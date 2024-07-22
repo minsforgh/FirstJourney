@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c65d0f0c5b8704bbf74c79ad34b63b, type: 3}
+  m_Name: WoodenBow
+  m_EditorClassIdentifier: 
+  _id: 501
+  _name: WoodenBow
+  _sprite: {fileID: 999060406, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
+  _icon: {fileID: 999060406, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
+  _value: 1500
+  _animationController: {fileID: 9100000, guid: 1cde8781e53346341b4992345a410d74,
+    type: 2}
+  _afterAttackDelay: 0.25
+  _attackCoolTime: 0.5
+  _spriteFlipX: 1
+  _spriteFlipY: 1
+  damageMagnification: 1.1
+  weaponRange: 10
+  projectilePrefab: {fileID: 5173432103645000859, guid: dafdf9534939a89418af8db5a5af570e,
+    type: 3}

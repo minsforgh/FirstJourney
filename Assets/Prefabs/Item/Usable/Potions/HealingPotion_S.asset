@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4880b077cc8e8704a95eb6d79b3273d9, type: 3}
+  m_Name: HealingPotion_S
+  m_EditorClassIdentifier: 
+  _id: 1001
+  _name: HealingPotion_S
+  _sprite: {fileID: -1788981346, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
+  _icon: {fileID: -1788981346, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
+  _value: 100
+  effectText: Heals Player's HP 50
+  restoreHealth: 50
