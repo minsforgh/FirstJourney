@@ -1,0 +1,34 @@
+{
+    "name": "InventoryControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "bb5beb83-cfc7-4d81-b4ff-911a3b40fc29",
+            "actions": [
+                {
+                    "name": "ToggleInventory",
+                    "type": "Button",
+                    "id": "490fa8f2-8b01-4860-aa86-a0668c647475",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f4c167c8-26c2-4762-a261-9de69f52a8f7",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
