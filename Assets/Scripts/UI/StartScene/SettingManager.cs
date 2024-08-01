@@ -21,18 +21,27 @@ public class SettingManager : MonoBehaviour
     }
 
     private void SaveSettings()
-    {
+    {   
+        AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
         BrightnessManager.Instance.SaveBrightness();
+        AudioManager.Instance.SaveVolume();
     }
 
     private void ExitSettings()
-    {
+    {   
+        AudioManager.Instance.PlayAudio(AudioClipType.Decline);
         if (!BrightnessManager.Instance.isSaved)
         {
             BrightnessManager.Instance.ResetBrightness();
         }
-
         BrightnessManager.Instance.isSaved = false;
+
+        if(!AudioManager.Instance.isSaved)
+        {
+            AudioManager.Instance.ResetBrightness();
+        }
+        AudioManager.Instance.isSaved = false;
+
         gameObject.SetActive(false);
     }
 

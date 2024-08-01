@@ -29,12 +29,6 @@ public class BrightnessManager : MonoBehaviour
         }
     }
 
-    public void SaveBrightness()
-    {
-        isSaved = true;
-        orgBrightness = newBrightness;
-    }
-
     public void SetBrightness(float value)
     {
         if (exposure != null)
@@ -44,6 +38,12 @@ public class BrightnessManager : MonoBehaviour
         }
     }
 
+    public void SaveBrightness()
+    {
+        isSaved = true;
+        orgBrightness = newBrightness;
+    }
+    
     public void ResetBrightness()
     {
         if (exposure != null)

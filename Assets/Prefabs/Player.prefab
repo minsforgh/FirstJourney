@@ -232,13 +232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db944b8a0f4b574aaec0430f1a44c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 2834272569660040473}
+  animController: {fileID: 0}
   moveSpeed: 10
   dodgeRange: 1
-  hitMaterial: {fileID: 2100000, guid: bc892948f3bf12040b40485577a00d70, type: 2}
-  rigidBody: {fileID: 2834272569660040473}
-  animcontroller: {fileID: 0}
-  walkAudioInterval: 0.3
   dodgeCoolTime: 1
+  invincibleTime: 1
+  walkAudioInterval: 0.3
 --- !u!114 &2834272570110135748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,13 +252,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  invincibleTime: 0.5
   TakeDamgeEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2834272569660040474}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: StartPlayHitEffectCoroutine
+      - m_Target: {fileID: 7798772730261338936}
+        m_TargetAssemblyTypeName: PlayerAnimController, Assembly-CSharp
+        m_MethodName: PlayHitEffectCoroutine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -280,7 +279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f0bc6c7f424284eafb59bc206d2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handAnimator: {fileID: 887951599}
 --- !u!114 &7798772730261338936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 2834272569660040470}
   handAnimator: {fileID: 887951599}
-  spriteRenderer: {fileID: 2834272569660040476}
+  playerSpriteRenderer: {fileID: 2834272569660040476}
+  handSprieRenderer: {fileID: 887951600}
+  hitMaterial: {fileID: 2100000, guid: bc892948f3bf12040b40485577a00d70, type: 2}
 --- !u!1 &2834272570457390297
 GameObject:
   m_ObjectHideFlags: 0
