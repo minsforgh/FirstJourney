@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour, HealthInterface
 {
     [SerializeField] float maxHealth = 100;
-    [SerializeField] float invincibleTime;
     private float currentHealth;
     public UnityEvent TakeDamgeEvent;
 
@@ -47,17 +46,11 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
         AudioManager.Instance.PlayAudio(AudioClipType.PlayerHurt);
         CurrentHealth -= amount;
         TakeDamgeEvent.Invoke();
-        gameObject.layer = 11;
-        Invoke("OffInvincible", invincibleTime);
-    }
-
-    void OffInvincible()
-    {
-        gameObject.layer = 10;
     }
 
     void Die()
-    {
-        GameObject.Destroy(gameObject);
+    {   
+        Destroy(gameObject);
+        LevelManager.Instance.LoadEndScene();
     }
 }

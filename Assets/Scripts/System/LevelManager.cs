@@ -11,26 +11,36 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
-        if(Instance != null)
+        if(Instance == null)
+        {   
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+            AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
+            
+        }
+        else
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+    }
+
+    public void LoadStartScene()
+    {
+        StartCoroutine(WatiAndLoad("Start", sceneLoadDelay));
+        AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
     }
 
     public void LoadGameScene()
-    {
+    {   
         StartCoroutine(WatiAndLoad("Game", sceneLoadDelay));
+        AudioManager.Instance.PlayBackgroundMusic(AudioClipType.InGame01);
     }
 
     public void LoadEndScene()
-    {
-        
+    {   
+        StartCoroutine(WatiAndLoad("End", sceneLoadDelay));
+        AudioManager.Instance.PlayBackgroundMusic(AudioClipType.EndMenu);
     }
 
     IEnumerator WatiAndLoad(string sceneName, float delay)

@@ -5,6 +5,6 @@
         Basic, Confirm, Decline, Denied,
         Equip, UnEquip,
         BuynSell,
-        BackgroundMusic
+        StartMenu, InGame01, EndMenu
 
     }

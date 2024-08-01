@@ -3,15 +3,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using System.Runtime.CompilerServices;
 
 public class PlayerMovement : MonoBehaviour
-{   
+{
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private PlayerAnimController animController;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float dodgeRange;
     [SerializeField] float dodgeCoolTime;
+    [SerializeField] float invincibleTime;
 
     private Vector2 moveInput;
 
@@ -81,12 +83,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     IEnumerator Dodge()
-    {
-        rigidBody.MovePosition(rigidBody.position + moveInput.normalized * dodgeRange);
+    {   
+        Invincible();
+        rigidBody.MovePosition(rigidBody.position + moveInput.normalized * dodgeRange); 
         rigidBody.velocity = Vector2.zero;
         AudioManager.Instance.PlayAudio(AudioClipType.PlayerDodge);
         yield return new WaitForSeconds(dodgeCoolTime);
         PlayerState.Instance.SetCanDodge(true);
+    }
+
+    public void Invincible()
+    {
+        gameObject.layer = 11;
+        Invoke("OffInvincible", invincibleTime);
+    }
+
+    private void OffInvincible()
+    {
+        gameObject.layer = 10;
     }
 
     public void StopPlayer()

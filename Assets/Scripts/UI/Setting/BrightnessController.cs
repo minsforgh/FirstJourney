@@ -23,7 +23,6 @@ public class BrightnessController : MonoBehaviour
 
     private void OnDisable()
     {   
-        Debug.Log("child has Disabled");
         brightnessSlider.onValueChanged.RemoveListener(OnSliderValueChanged);
         brightnessInputField.onEndEdit.RemoveListener(OnInputFieldValueChanged);
     }

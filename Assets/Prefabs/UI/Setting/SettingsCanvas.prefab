@@ -682,7 +682,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 20
-  m_CharacterLimit: 0
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 20
-  m_CharacterLimit: 0
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2579,6 +2579,7 @@ GameObject:
   - component: {fileID: 6356586204185111424}
   - component: {fileID: 6356586204185111426}
   - component: {fileID: 6356586204185111425}
+  - component: {fileID: 5105691744519145449}
   m_Layer: 5
   m_Name: SoundSettings
   m_TagString: Untagged
@@ -2646,6 +2647,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5105691744519145449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356586204185111431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d362b2686a4f9af4ba8ca7ebf1466148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainVolumeSlider: {fileID: 6356586203214816695}
+  mainVolumeInputField: {fileID: 6356586203318251374}
+  backgroundVolumeSlider: {fileID: 6356586204504901715}
+  backgroundVolumeInputField: {fileID: 6356586203559537993}
 --- !u!1 &6356586204242680991
 GameObject:
   m_ObjectHideFlags: 0
