@@ -13,11 +13,14 @@ abstract public class WeaponData : ItemData
     public float AfterAttackDelay => _afterAttackDelay;
     public float AttackCoolTime => _attackCoolTime;
 
+    public AudioClip weaponClip;
 
     [SerializeField] private bool _spriteFlipX;
     public bool SpriteFlipX => _spriteFlipX;
     [SerializeField] private bool _spriteFlipY;
     public bool SpriteFlipY => _spriteFlipY;
+
+
 
     public abstract void Attack(Vector2 origin, Vector2 target, int directionIndex);
 

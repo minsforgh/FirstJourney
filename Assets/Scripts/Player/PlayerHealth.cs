@@ -7,10 +7,8 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
 {
     [SerializeField] float maxHealth = 100;
     [SerializeField] float invincibleTime;
-    float currentHealth;
-
+    private float currentHealth;
     public UnityEvent TakeDamgeEvent;
-    public PlayerInfo playerInfo;
 
     void Start()
     {
@@ -26,10 +24,11 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
             currentHealth = Mathf.Min(value, MaxHealth);
             if (currentHealth <= 0)
             {   
+                AudioManager.Instance.PlayAudio(AudioClipType.PlayerDead);
                 currentHealth = 0;
                 Die();
             }
-            playerInfo.UpdatePlayerHp();
+            PlayerInfo.Instance.UpdatePlayerHp();
         }
     }
 
@@ -45,6 +44,7 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
     }
     public void TakeDamage(float amount)
     {   
+        AudioManager.Instance.PlayAudio(AudioClipType.PlayerHurt);
         CurrentHealth -= amount;
         TakeDamgeEvent.Invoke();
         gameObject.layer = 11;

@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class NPCInteraction : MonoBehaviour
-{
+{   
     [SerializeField] private GameObject interactionUIPrefab;
     public GameObject interactionUIInstance;
-
-    [SerializeField] private PlayerMovement playerMovement;
 
     private bool isPlayerInRange = false;
     private InputAction interact;
 
     private SpriteRenderer spriteRenderer;
     private Color oldColor;
+    
+    public UnityEvent ShowUIEvent;
 
     private void Awake()
     {
@@ -26,9 +26,16 @@ public class NPCInteraction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        playerMovement = FindAnyObjectByType<PlayerMovement>();
+        interact.Enable();
+        ShowUIEvent.AddListener(() => PlayerState.Instance.SetIsInteracting(true));
+    }
+
+    private void OnDisable()
+    {
+        interact.Disable();
+        ShowUIEvent.RemoveAllListeners();
     }
 
     private void OnInteractNPC(InputAction.CallbackContext context)
@@ -46,33 +53,18 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    // public void OnPointerClick(PointerEventData eventData)
-    // {
-    //     if (isPlayerInRange)
-    //     {
-    //         if (interactionUIInstance == null)
-    //         {
-    //             ShowInteractionUI();
-    //         }
-    //         // else
-    //         // {
-    //         //     HideInteractionUI();
-    //         // }
-    //     }
-    // }
-
     private void ShowInteractionUI()
-    {
-        playerMovement.StopMovement();
-        PlayerAttack.CanAttack = false;
-        interactionUIInstance = Instantiate(interactionUIPrefab);
+    {   
+        ShowUIEvent?.Invoke();
+        AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
+        interactionUIInstance = UIManager.Instance.CreateUI(interactionUIPrefab);
     }
 
     public void HideInteractionUI()
     {
-        PlayerMovement.CanMove = true;
-        PlayerAttack.CanAttack = true;
-        Destroy(interactionUIInstance);
+        AudioManager.Instance.PlayAudio(AudioClipType.Decline);
+        PlayerState.Instance.SetIsInteracting(false);
+        UIManager.Instance.DestroyUI(interactionUIInstance);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -106,13 +98,4 @@ public class NPCInteraction : MonoBehaviour
         spriteRenderer.color = oldColor;
     }
 
-    private void OnEnable()
-    {
-        interact.Enable();
-    }
-
-    private void OnDisable()
-    {
-        interact.Disable();
-    }
 }

@@ -1,23 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class SellSystem : MonoBehaviour
+public class SellSystem : TradeSystem
 {   
     [SerializeField] private List<ToSellItem> toSellItems = new List<ToSellItem>();
     private List<ItemData> playerInventory = new List<ItemData>();
-    private InventorySystem inventorySystem;
-
-    public MerchantData merchant;
-    public TextMeshProUGUI moneyText;
 
     private void Start()
     {   
-        inventorySystem = FindAnyObjectByType<InventorySystem>();
-        playerInventory = inventorySystem.GetInventory();
-
+        playerInventory = InventorySystem.Instance.GetInventory();
         UpdateToSellItems();
+        UpdateMoneyText();
     }
 
     public bool SellItem(ItemData item)
@@ -25,15 +19,18 @@ public class SellSystem : MonoBehaviour
         if(merchant.currentMoney >= item.Value / 2)
         {   
             merchant.AddItem(item.Clone());
-            inventorySystem.RemoveItem(item);
+            InventorySystem.Instance.RemoveItem(item);
             merchant.MinusMoeny(item.Value / 2);
-            inventorySystem.AddMoney(item.Value / 2);
+            InventorySystem.Instance.AddMoney(item.Value / 2);
             UpdateMoneyText();
+
+            AudioManager.Instance.PlayAudio(AudioClipType.BuynSell);
             return true;
         }
         else
         {
             Debug.Log("Need more Money!!");
+            AudioManager.Instance.PlayAudio(AudioClipType.Denied);
             return false;
         }
     }
@@ -48,10 +45,4 @@ public class SellSystem : MonoBehaviour
             }
         }
     }
-
-    public void UpdateMoneyText()
-    {
-        moneyText.text = merchant.currentMoney.ToString();
-    }
-    
 }

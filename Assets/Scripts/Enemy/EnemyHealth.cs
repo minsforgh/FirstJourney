@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class EnemyHealth : MonoBehaviour, HealthInterface
 {
@@ -10,6 +9,7 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
     [SerializeField] Transform damageSpawnPoint;
     [SerializeField] float maxHealth = 100;
     float currentHealth = 100;
+
     public UnityEvent TakeDamageEvent;
     public UnityEvent DieEvent;
 
@@ -44,13 +44,15 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
         GameObject damageText = Instantiate(floatingDamage, damageSpawnPoint.position, Quaternion.identity);
         damageText.GetComponent<FloatingDamage>().SetDamageText(amount);
         CurrentHealth -= amount;
+        AudioManager.Instance.PlayAudio(AudioClipType.EnemyHurt);
         TakeDamageEvent.Invoke();
     }
 
     void Die()
-    {
-        DieEvent.Invoke();
+    {   
+        DieEvent.Invoke();  
         enemyDrop.DropItems();
+        AudioManager.Instance.PlayAudio(AudioClipType.EnemyDead);
         Destroy(transform.parent.gameObject, 1f);
     }
 }

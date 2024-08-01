@@ -17,5 +17,7 @@ MonoBehaviour:
   _sprite: {fileID: -1788981346, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _icon: {fileID: -1788981346, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _value: 100
+  _pickedUpClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  usingClip: {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
   effectText: Heals Player's HP 50
   restoreHealth: 50

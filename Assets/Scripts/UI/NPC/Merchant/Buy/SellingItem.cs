@@ -11,8 +11,8 @@ public class SellingItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] private ItemData item;
     public Image itemIcon;
     public TextMeshProUGUI valueText;
-    public BuySystem buySystem;
     private ItemDescription itemDescription;
+    private BuySystem buySystem;
 
     private const float doubleClickTime = 0.3f;
     private float lastClickTime;
@@ -20,7 +20,6 @@ public class SellingItem : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        buySystem = transform.parent.GetComponent<BuySystem>();
         itemDescription = FindObjectOfType<ItemDescription>();
     }
 
@@ -81,4 +80,8 @@ public class SellingItem : MonoBehaviour, IPointerClickHandler
         }
     }
 
-}
+    public void SetBuySystem(BuySystem buy)
+    {
+        buySystem = buy;
+    }
+}   

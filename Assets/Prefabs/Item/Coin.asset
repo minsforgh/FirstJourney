@@ -17,3 +17,4 @@ MonoBehaviour:
   _sprite: {fileID: -1103327253, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _icon: {fileID: -1103327253, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _value: 0
+  _pickedUpClip: {fileID: 8300000, guid: 94d2f750fc86a4b8a8811a375d96b107, type: 3}

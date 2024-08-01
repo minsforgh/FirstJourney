@@ -394,6 +394,7 @@ MonoBehaviour:
   floatingDamage: {fileID: 4819425487490816618, guid: e215095b3832917469951bc63ccff4df,
     type: 3}
   damageSpawnPoint: {fileID: 2539971119465756459}
+  maxHealth: 20
   TakeDamageEvent:
     m_PersistentCalls:
       m_Calls:
@@ -436,9 +437,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 92749471092305175}
-        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
-        m_MethodName: DropItems
+      - m_Target: {fileID: 2539971120592916352}
+        m_TargetAssemblyTypeName: EnemyAttack, Assembly-CSharp
+        m_MethodName: IsAliveToFalse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -448,6 +449,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  enemyDrop: {fileID: 92749471092305175}
 --- !u!114 &2539971120592916352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +470,7 @@ MonoBehaviour:
   damage: 10
   knockbackForce: 0.5
   canAttack: 1
+  isAlive: 0
 --- !u!114 &92749471092305175
 MonoBehaviour:
   m_ObjectHideFlags: 0
