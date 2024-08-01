@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 public class ItemClickHandler : MonoBehaviour, IPointerClickHandler
 {   
     public PlayerHealth health;
-    public InventorySystem inventorySystem;
-
     private float lastClickTime;
     private const float doubleClickThreshold = 0.3f; // 더블 클릭으로 인식할 최대 시간 간격
 
@@ -31,17 +29,19 @@ public class ItemClickHandler : MonoBehaviour, IPointerClickHandler
         if (itemData is WeaponData weapon)
         {
             // 무기 사용 로직 구현
-            if(!inventorySystem.isWeaponSlotFull)
+            if(!WeaponManager.Instance.isWeaponSlotFull)
             {   
-                inventorySystem.AddEquippedWeapon(weapon);
-                itemIcon.ClearIcon();
+                AudioManager.Instance.PlayAudio(AudioClipType.Equip);
+                WeaponManager.Instance.AddEquippedWeapon(weapon);
+                // ItemIcon Clear는 필요없다. InventorySystem의 UpdateItemSlots는 Clear를 겸함
             }
             
         }
         else if (itemData is UsableItemData usable)
-        {
+        {   
+            AudioManager.Instance.PlayAudioByClip(usable.usingClip);
             usable.Use(health);
-            inventorySystem.RemoveItem(usable);
+            InventorySystem.Instance.RemoveItem(usable);
 
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 abstract public class UsableItemData : ItemData
 {
     public string EffectText => effectText;
+    public AudioClip usingClip;
     [SerializeField] private string effectText;
 
     abstract public void Use(HealthInterface target);

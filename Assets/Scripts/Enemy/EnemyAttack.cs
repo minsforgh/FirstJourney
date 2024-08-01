@@ -15,14 +15,17 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float knockbackForce;
 
     public bool canAttack;
+    public bool isAlive;
 
     void Start()
     {
         canAttack = true;
+        isAlive = true;
     }
 
     public IEnumerator Attack()
-    {
+    {   
+        AudioManager.Instance.PlayAudio(AudioClipType.EnemyAttack);
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, attackAreaRadius, playerLayer);
 
         foreach (Collider2D collider in collider2Ds)
@@ -46,8 +49,8 @@ public class EnemyAttack : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         HealthInterface health = collider.GetComponent<HealthInterface>();
-        if (health != null)
-        {
+        if (health != null && isAlive) 
+        {   
             health.TakeDamage(damage);
             Rigidbody2D playerRb = collider.GetComponent<Rigidbody2D>();
             KnockbackTarget(playerRb);
@@ -60,5 +63,12 @@ public class EnemyAttack : MonoBehaviour
         Vector2 knockBack = knockbackDirection * knockbackForce;
         targetRb.transform.Translate(knockBack, Space.World);
     }
+
+    public void IsAliveToFalse()
+    {   
+        Debug.Log("Is Alive to False");
+        isAlive = false;
+    }
+
 }
 

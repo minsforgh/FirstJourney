@@ -20,6 +20,8 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                     ItemData tempItem = sourceIcon.Item;
                     sourceIcon.SetItem(targetIcon.Item);
                     targetIcon.SetItem(tempItem);
+
+                    AudioManager.Instance.PlayAudio(AudioClipType.Basic);
                 }
             }
         }

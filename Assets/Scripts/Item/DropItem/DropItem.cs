@@ -6,12 +6,6 @@ using UnityEngine;
 public class DropItem : MonoBehaviour
 {
    public ItemData itemData;
-   private InventorySystem playerInventory;
-
-   public void Start()
-   {
-      playerInventory = FindObjectOfType<InventorySystem>();
-   }
 
    public void Init(ItemData data)
    {
@@ -21,7 +15,8 @@ public class DropItem : MonoBehaviour
    private void OnTriggerEnter2D(Collider2D other)
    {  
       ItemData newItem = itemData.Clone();
-      newItem.PickedUp(playerInventory);
+      newItem.PickedUp(InventorySystem.Instance);
+      AudioManager.Instance.PlayAudioByClip(newItem.PickedUpClip);
       Destroy(gameObject);
    }
 

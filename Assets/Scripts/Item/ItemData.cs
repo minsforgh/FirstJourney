@@ -8,6 +8,8 @@ abstract public class ItemData : ScriptableObject
     public string Name => _name;
     public Sprite Sprite => _sprite;
     public Sprite Icon => _icon;
+    public AudioClip PickedUpClip => _pickedUpClip;
+     
     public int Value
     {
         get
@@ -22,6 +24,7 @@ abstract public class ItemData : ScriptableObject
     [SerializeField] private Sprite _sprite;
     [SerializeField] private Sprite _icon;
     [SerializeField] private int _value;
+    [SerializeField] private AudioClip _pickedUpClip;
 
     public abstract void PickedUp(InventorySystem playerInventory);
 

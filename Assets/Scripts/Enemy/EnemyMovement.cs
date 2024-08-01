@@ -85,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void PlayDeathAnimation()
-    {
+    {   
         myAnimator.SetTrigger("death");
     }
 

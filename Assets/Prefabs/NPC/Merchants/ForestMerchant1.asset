@@ -23,4 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b676fad312e785408e8489640f2eda2, type: 2}
   - {fileID: 11400000, guid: 6444672466e09e644be162fcefc2006b, type: 2}
   - {fileID: 11400000, guid: 545a0e7dbc84e754eb5f7c3618ede776, type: 2}
-  currentMoney: 0
+  currentMoney: 1000

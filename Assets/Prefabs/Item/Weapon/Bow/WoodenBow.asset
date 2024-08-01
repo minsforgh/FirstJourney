@@ -17,10 +17,12 @@ MonoBehaviour:
   _sprite: {fileID: 999060406, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _icon: {fileID: 999060406, guid: 052facf5fe7a59147a1c2e9bfc9aaf43, type: 3}
   _value: 1500
+  _pickedUpClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
   _animationController: {fileID: 9100000, guid: 1cde8781e53346341b4992345a410d74,
     type: 2}
-  _afterAttackDelay: 0.25
-  _attackCoolTime: 0.5
+  _afterAttackDelay: 0.2
+  _attackCoolTime: 0.7
+  weaponClip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   _spriteFlipX: 1
   _spriteFlipY: 1
   damageMagnification: 1.1

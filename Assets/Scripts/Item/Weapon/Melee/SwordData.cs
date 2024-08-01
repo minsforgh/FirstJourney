@@ -22,6 +22,7 @@ public class SwordData : MeleeWeaponData
         {
             HealthInterface enemyHealth = hit.transform.GetComponent<HealthInterface>();
             enemyHealth.TakeDamage(damage);
+            
             Rigidbody2D enemyRb = hit.transform.GetComponent<Rigidbody2D>();
             KnockbackTarget(enemyRb, origin);
         }

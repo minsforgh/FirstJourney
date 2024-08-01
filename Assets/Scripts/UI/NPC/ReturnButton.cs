@@ -14,7 +14,8 @@ public class ReturnButton : MonoBehaviour
     }
 
     public void OnReturnButton()
-    {
+    {   
+        AudioManager.Instance.PlayAudio(AudioClipType.Decline);
         Destroy(transform.parent.gameObject);
     }
 }
