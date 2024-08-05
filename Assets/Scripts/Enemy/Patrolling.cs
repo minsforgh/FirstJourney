@@ -1,73 +1,54 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Patrolling : MonoBehaviour
 {
-    [SerializeField] Transform body;
-    [SerializeField] Transform patrolRoute;
-    [SerializeField] float patrolSpeed;
-    public Animator myAnimator;
-    bool isPatrolling;
-    
+    [SerializeField] private Transform body;
+    [SerializeField] private Transform patrolRoute;
+    [SerializeField] private float patrolSpeed;
+    [SerializeField] private EnemyAnimController enemyAnimController;
+    [SerializeField] private EnemyState enemyState;
+
     int current;
     List<Transform> pointList;
 
-    void Start()
+    private void Start()
     {
         current = 0;
-        
+
         pointList = new List<Transform>();
-        foreach (Transform child in patrolRoute)
+        if (patrolRoute != null)
         {
-            pointList.Add(child);
-        }
-
-        isPatrolling = true;
-    }
-
-    void Update()
-    {
-        Patrol();
-    }
-
-    void Patrol()
-    {
-        if (isPatrolling)
-        {
-            if (body.position != pointList[current].position)
+            foreach (Transform child in patrolRoute)
             {
-                myAnimator.SetBool("isMoving", true);
-                body.position = Vector2.MoveTowards(body.position, pointList[current].position, patrolSpeed * Time.deltaTime);
+                pointList.Add(child);
             }
-            else
-            {
-                myAnimator.SetBool("isMoving", false);
-                current = (current + 1) % pointList.Count;
-            }
-
-            FlipSprite();
         }
     }
 
-    void FlipSprite()
+    private void Update()
     {
-        float horizontalDirection = pointList[current].position.x - body.position.x;
-        bool enemyHasHorizontalSpeed = Mathf.Abs(horizontalDirection) > Mathf.Epsilon;
-        if (enemyHasHorizontalSpeed)
+        if (enemyState.DoPatrol)
         {
-            body.localScale = new Vector2(Math.Sign(horizontalDirection), 1);
+            Patrol();
         }
     }
 
-    public void StopPatrol()
+    private void Patrol()
     {
-        isPatrolling = false;
-    }
+        if (body.position != pointList[current].position)
+        {
+            enemyAnimController.SetIsmoving(true);
+            body.position = Vector2.MoveTowards(body.position, pointList[current].position, patrolSpeed * Time.deltaTime);
+        }
+        else
+        {
+            enemyAnimController.SetIsmoving(false);
+            current = (current + 1) % pointList.Count;
+        }
 
-    public void ContinuePatrol()
-    {
-        isPatrolling = true;
+        enemyAnimController.FlipSprite((pointList[current].position - body.position).normalized);
+
     }
 }

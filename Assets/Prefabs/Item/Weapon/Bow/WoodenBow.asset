@@ -25,7 +25,6 @@ MonoBehaviour:
   weaponClip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   _spriteFlipX: 1
   _spriteFlipY: 1
-  damageMagnification: 1.1
-  weaponRange: 10
   projectilePrefab: {fileID: 5173432103645000859, guid: dafdf9534939a89418af8db5a5af570e,
     type: 3}
+  projectileDamage: 10

@@ -10,10 +10,11 @@ public class Hand : MonoBehaviour
     public bool OrgWeaponFlipX { get; set; }
 
     void Start()
-    {
+    {   
+        // 반드시 localPosition (부모인 Player 기준 position) 아니면 world 기준이라 이상한데로
+        orgHandPos = transform.localPosition;
         playerSpriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        orgHandPos = transform.position;
         spriteRenderer.flipX = OrgWeaponFlipX;
     }
 

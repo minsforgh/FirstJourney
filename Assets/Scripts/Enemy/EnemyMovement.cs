@@ -9,92 +9,73 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float chaseSpeed;
     [SerializeField] float chaseRange;
 
-    [Header("Attack Spec")]
     [SerializeField] float attackRange;
-    [SerializeField] float beforeAttackDelay;
-    [SerializeField] float afterAttackDelay;
 
-    [SerializeField] Transform player;
-    EnemyAttack enemyAttack;
-    public Patrolling patrolling;
-
-    Rigidbody2D rigidBody;
-    Animator myAnimator;
-    bool canChase;
-    bool hitChase;
+    private Transform playerTransform;
+    private EnemyAnimController enemyAnimController;
+    private EnemyAttackBase enemyAttack;
+    private EnemyState enemyState;
+    private Patrolling patrolling;
 
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-        enemyAttack = GetComponent<EnemyAttack>();
-        //patrolling = GetComponentInParent<Patrolling>();
-        canChase = true;
-        hitChase = false;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        enemyAnimController = GetComponent<EnemyAnimController>();
+        enemyAttack = GetComponent<EnemyAttackBase>();
+        enemyState = GetComponent<EnemyState>();
+        patrolling = GetComponentInParent<Patrolling>();
     }
 
     void Update()
     {
-        if (player != null)
+        if (playerTransform != null)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
-            if (distanceToPlayer <= attackRange && enemyAttack.canAttack)
-            {
-                canChase = false;
-                hitChase = false;
-                patrolling.StopPatrol();
-
-                myAnimator.SetBool("isMoving", false);
-                myAnimator.SetTrigger("attack");
+            if ((distanceToPlayer <= attackRange) && enemyState.CanAttack)
+            {   
+                enemyState.SetHitChase(false);
+                enemyState.SetDoPatrol(false);
+                enemyAnimController.SetIsmoving(false);
 
                 StartCoroutine(Attack());
             }
-            else if (hitChase || (distanceToPlayer <= chaseRange && distanceToPlayer >= attackRange && canChase))
+            else if (enemyState.HitChase || ((distanceToPlayer <= chaseRange) && (distanceToPlayer >= attackRange) && enemyState.CanChase))
             {
-                myAnimator.SetBool("isMoving", true);
-                patrolling.StopPatrol();
+                enemyState.SetDoPatrol(false);
+                enemyAnimController.SetIsmoving(true);
                 Chase();
             }
             else if (distanceToPlayer > chaseRange)
             {
-                patrolling.ContinuePatrol();
+                enemyState.SetDoPatrol(true);
             }
         }
     }
 
-    IEnumerator Attack()
-    {
-        enemyAttack.canAttack = false;
-        yield return new WaitForSeconds(beforeAttackDelay);
-        StartCoroutine(enemyAttack.Attack());
-        yield return new WaitForSeconds(afterAttackDelay);
-        canChase = true;
-    }
-
-    void Chase()
-    {
-        Vector2 direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
-        transform.parent.position += (Vector3)(direction * chaseSpeed * Time.deltaTime);
-        transform.localScale = new Vector2(Mathf.Sign(direction.x), 1);
-    }
-
-    public void PlayHitAnimation()
-    {
-        myAnimator.SetTrigger("hit");
-    }
-
-    public void PlayDeathAnimation()
+    private IEnumerator Attack()
     {   
-        myAnimator.SetTrigger("death");
+        enemyState.SetCanChase(false);
+        enemyState.SetCanAttacK(false);
+        yield return new WaitForSeconds(enemyAttack.beforeAttackDelay);
+
+        enemyAnimController.FlipSprite((playerTransform.position - transform.position).normalized);
+        enemyAnimController.TriggerAttack();
+        enemyAttack.Attack((Vector2)playerTransform.position);
+
+        yield return new WaitForSeconds(enemyAttack.afterAttackDelay);
+        enemyState.SetCanChase(true);
+        enemyState.SetCanAttacK(true);
     }
 
-    public void EnableHitChase()
+    private void Chase()
     {
-        hitChase = true;
+        Vector2 direction = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
+        transform.parent.position += (Vector3)(direction * chaseSpeed * Time.deltaTime);
+        enemyAnimController.FlipSprite(direction);
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);

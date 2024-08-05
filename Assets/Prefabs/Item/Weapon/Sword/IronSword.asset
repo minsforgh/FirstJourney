@@ -28,7 +28,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
-  damage: 10
+  damage: 15
   weaponRange: 1
   knockbackForce: 0.5
   attackEffectPrefab: {fileID: 4659716342608156455, guid: 762b679d9cbbe3044bad61deb5fe8f86,

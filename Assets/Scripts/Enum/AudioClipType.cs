@@ -1,7 +1,7 @@
  public enum AudioClipType
     {
         PlayerMove, PlayerHurt, PlayerDodge, PlayerDead,
-        EnemyAttack, EnemyHurt, EnemyDead,
+        EnemyMeleeAttack, EnemyHurt, EnemyDead,
         Basic, Confirm, Decline, Denied,
         Equip, UnEquip,
         BuynSell,

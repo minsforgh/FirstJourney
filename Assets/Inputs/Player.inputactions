@@ -211,7 +211,7 @@
                 {
                     "name": "",
                     "id": "36f39d7f-c701-4c75-8280-73e4bd87125f",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

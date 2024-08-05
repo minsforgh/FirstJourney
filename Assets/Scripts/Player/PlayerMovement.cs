@@ -7,8 +7,8 @@ using System.Runtime.CompilerServices;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rigidBody;
-    [SerializeField] private PlayerAnimController animController;
+    private Rigidbody2D rigidBody;
+    private PlayerAnimController animController;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float dodgeRange;
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = value.Get<Vector2>();
     }
+
     void Move()
     {
         if (PlayerState.Instance.CanMove && !PlayerState.Instance.IsInteracting)
@@ -85,9 +86,15 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Dodge()
     {   
         Invincible();
-        rigidBody.MovePosition(rigidBody.position + moveInput.normalized * dodgeRange); 
-        rigidBody.velocity = Vector2.zero;
+        animController.PlayDodgeEffectCoroutine(invincibleTime);
         AudioManager.Instance.PlayAudio(AudioClipType.PlayerDodge);
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = (mousePosition - transform.position).normalized;
+        animController.FlipSprite(directionToMouse);
+        rigidBody.MovePosition(rigidBody.position + directionToMouse * dodgeRange);
+        rigidBody.velocity = Vector2.zero;
+
         yield return new WaitForSeconds(dodgeCoolTime);
         PlayerState.Instance.SetCanDodge(true);
     }
