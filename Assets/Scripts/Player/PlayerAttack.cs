@@ -22,8 +22,6 @@ public class PlayerAttack : MonoBehaviour
             PlayerState.Instance.SetCanAttack(false);
             PlayerState.Instance.SetCanMove(false);
 
-            AudioManager.Instance.PlayAudioByClip(CurrentWeapon.weaponClip);
-
             StartCoroutine(Attack());
         }
     }

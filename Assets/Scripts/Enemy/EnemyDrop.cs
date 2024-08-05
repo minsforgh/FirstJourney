@@ -40,7 +40,8 @@ public class EnemyDrop : MonoBehaviour
         dropItem.itemData = itemData;
         spriteRenderer.sprite = itemData.Sprite;
 
-        instance.transform.position = transform.position;
+        Vector2 randomOffset = Random.insideUnitCircle * 0.5f; // 0.5f는 범위를 조절하는 값
+        instance.transform.position = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
     }
 
 }

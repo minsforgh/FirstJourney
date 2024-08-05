@@ -19,4 +19,4 @@ MonoBehaviour:
   - 0.1
   - 0.5
   coin: {fileID: 11400000, guid: fb2d0bcf29d6b0d48bd70fbef6fe4190, type: 2}
-  maxCoinValue: 9999
+  maxCoinValue: 500

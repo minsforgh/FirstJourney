@@ -15,6 +15,10 @@ public class LevelManager : MonoBehaviour
         {   
             Instance = this;
             DontDestroyOnLoad(gameObject); 
+            if(AudioManager.Instance == null)
+            {
+                Debug.LogError("IS null");
+            }
             AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
             
         }

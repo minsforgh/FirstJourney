@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
             { AudioClipType.PlayerDodge, playerClips[1] },
             { AudioClipType.PlayerHurt, playerClips[2] },
             { AudioClipType.PlayerDead, playerClips[3] },
-            { AudioClipType.EnemyAttack, enemyClips[0] },
+            { AudioClipType.EnemyMeleeAttack, enemyClips[0] },
             { AudioClipType.EnemyHurt, enemyClips[1] },
             { AudioClipType.EnemyDead, enemyClips[2] },
             { AudioClipType.Basic, uIClips[0] },

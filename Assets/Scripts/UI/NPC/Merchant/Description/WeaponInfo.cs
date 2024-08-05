@@ -19,7 +19,7 @@ public class WeaponInfo : ItemInfoBase
         
         if(weapon is RangedWeaponData ranged)
         {
-            damageText.text = ranged.DmgMagnification.ToString() + "X (Arrow Dmg)";
+            damageText.text = ranged.projectileDamage.ToString() + "Projectile Damage";
         }
         else if(weapon is MeleeWeaponData melee)
         {

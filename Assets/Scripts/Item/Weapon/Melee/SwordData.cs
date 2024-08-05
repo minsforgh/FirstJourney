@@ -9,7 +9,9 @@ public class SwordData : MeleeWeaponData
     [SerializeField] float attackRange;
 
     public override void Attack(Vector2 origin, Vector2 target, int directionIndex)
-    {
+    {   
+        AudioManager.Instance.PlayAudioByClip(weaponClip);
+        
         Vector2 direction = (target - origin).normalized;
         Vector2 attackPosition = origin + direction * weaponRange;
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, attackRange, targetLayer);

@@ -7,8 +7,10 @@ public class PlayerAnimController : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator handAnimator;
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
-    [SerializeField] private SpriteRenderer handSprieRenderer;
+
+    [Header ("Materials")]
     [SerializeField] private Material hitMaterial;
+    [SerializeField] private Material dodgeMaterial;
     private Material orgMaterial;
 
     private void Start()
@@ -80,10 +82,22 @@ public class PlayerAnimController : MonoBehaviour
         StartCoroutine(HitEffect());
     }
 
-    IEnumerator HitEffect()
+    private IEnumerator HitEffect()
     {
         playerSpriteRenderer.material = hitMaterial;
         yield return new WaitForSeconds(0.1f);
+        playerSpriteRenderer.material = orgMaterial;
+    }
+
+    public void PlayDodgeEffectCoroutine(float invincibleTime)
+    {
+        StartCoroutine(DodgeEffect(invincibleTime));
+    }
+
+    private IEnumerator DodgeEffect(float invincibleTime)
+    {   
+        playerSpriteRenderer.material = dodgeMaterial;
+        yield return new WaitForSeconds(invincibleTime);
         playerSpriteRenderer.material = orgMaterial;
     }
 
