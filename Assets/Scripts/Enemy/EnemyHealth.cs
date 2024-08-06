@@ -5,15 +5,32 @@ using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour, HealthInterface
 {
-    [SerializeField] GameObject floatingDamage;
-    [SerializeField] Transform damageSpawnPoint;
-    [SerializeField] float maxHealth = 100;
+    public GameObject floatingDamage;
+    public float maxHealth = 100;
+
+    Transform damageSpawnPoint;
     float currentHealth = 100;
 
-    public UnityEvent TakeDamageEvent;
-    public UnityEvent DieEvent;
+    public UnityEvent TakeDamageEvent = new UnityEvent();
+    public UnityEvent DieEvent = new UnityEvent();
 
-    public EnemyDrop enemyDrop;
+    private EnemyDrop enemyDrop;
+
+    private void Awake()
+    {
+        damageSpawnPoint = transform.GetChild(0)?.transform;
+    }   
+
+    private void Start()
+    {
+         enemyDrop = GetComponent<EnemyDrop>();
+    }
+    
+    private void OnDisable()
+    {
+        TakeDamageEvent.RemoveAllListeners();
+        DieEvent.RemoveAllListeners();
+    }
 
     public float CurrentHealth
     {
@@ -51,6 +68,10 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
     void Die()
     {   
         DieEvent.Invoke();  
+        if(enemyDrop == null)
+        {
+            Debug.Log("drop is null");
+        }
         enemyDrop.DropItems();
         AudioManager.Instance.PlayAudio(AudioClipType.EnemyDead);
         Destroy(transform.parent.gameObject, 1f);

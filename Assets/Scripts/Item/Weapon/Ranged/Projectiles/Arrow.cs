@@ -26,7 +26,7 @@ public class Arrow : Projectile
         int colliderLayer = collider.gameObject.layer;
         Rigidbody2D targetRb = collider.GetComponent<Rigidbody2D>();
         // collderLayer는 int, targetLayer는 LayerMask
-        if (1 << colliderLayer == targetLayer)
+        if (1 << colliderLayer == targetLayerMask)
         {
             collider.GetComponent<HealthInterface>().TakeDamage(projectileDamage);
             Destroy(gameObject);

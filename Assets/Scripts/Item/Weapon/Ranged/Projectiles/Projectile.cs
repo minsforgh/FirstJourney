@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public LayerMask targetLayer;
+    public LayerMask targetLayerMask;
 
     [Header("Projectile Spec")]
     [SerializeField] protected float projectileSpeed;

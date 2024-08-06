@@ -27,21 +27,21 @@ public class EnemyState : MonoBehaviour
         private set { _hitChase = value; }
     }
 
-    public bool DoPatrol
+    public bool IsPatrolling
     {
-        get { return _doPatrol; }
-        private set { _doPatrol = value; }
+        get { return _isPatrolling; }
+        private set { _isPatrolling = value; }
     }
 
     private bool _isAlive = true;
     private bool _canAttack = true;
     private bool _canChase = true;
     private bool _hitChase = false;
-    private bool _doPatrol = true;
+    private bool _isPatrolling = true;
 
-    public void SetIsAlive(bool value)
+    public void DisableIsAlive()
     {
-        IsAlive = value;
+        IsAlive = false;
     }
 
     public void SetCanAttacK(bool value)
@@ -54,14 +54,19 @@ public class EnemyState : MonoBehaviour
         CanChase = value;
     }
 
-    public void SetHitChase(bool value)
+    public void EnableHitChase()
     {
-        HitChase = value;
+        HitChase = true;
     }
 
-    public void SetDoPatrol(bool value)
+    public void DisableHitChase()
     {
-        DoPatrol = value;
+        HitChase = false;
     }
     
+    public void SetIsPatrolling(bool value)
+    {
+        IsPatrolling = value;
+    }
+
 }
