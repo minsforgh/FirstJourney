@@ -232,11 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db944b8a0f4b574aaec0430f1a44c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 2834272569660040473}
-  animController: {fileID: 0}
   moveSpeed: 10
   dodgeRange: 1
-  dodgeCoolTime: 1
+  dodgeCoolTime: 2
   invincibleTime: 1
   walkAudioInterval: 0.3
 --- !u!114 &2834272570110135748
@@ -294,8 +292,8 @@ MonoBehaviour:
   playerAnimator: {fileID: 2834272569660040470}
   handAnimator: {fileID: 887951599}
   playerSpriteRenderer: {fileID: 2834272569660040476}
-  handSprieRenderer: {fileID: 887951600}
   hitMaterial: {fileID: 2100000, guid: bc892948f3bf12040b40485577a00d70, type: 2}
+  dodgeMaterial: {fileID: 0}
 --- !u!1 &2834272570457390297
 GameObject:
   m_ObjectHideFlags: 0

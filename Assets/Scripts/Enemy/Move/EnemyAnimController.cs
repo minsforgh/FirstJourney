@@ -7,14 +7,20 @@ public class EnemyAnimController : MonoBehaviour
     [SerializeField] Animator enemyAnimator;
     [SerializeField] SpriteRenderer enemyRenderer;
 
+    private void Awake()
+    {
+        enemyAnimator = GetComponent<Animator>();
+        enemyRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void SetIsmoving(bool isMoving)
     {
         enemyAnimator.SetBool("IsMoving", isMoving);
     }
 
-    public void TriggerAttack()
+    public void TriggerAttack(string triggerName)
     {
-        enemyAnimator.SetTrigger("Attack");
+        enemyAnimator.SetTrigger(triggerName);
     }
 
     public void TriggerHit()

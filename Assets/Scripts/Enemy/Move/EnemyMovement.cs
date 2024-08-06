@@ -6,24 +6,23 @@ using UnityEngine.Events;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Chase Spec")]
-    [SerializeField] float chaseSpeed;
-    [SerializeField] float chaseRange;
+    public float chaseSpeed;
+    public float chaseRange;
 
-    [SerializeField] float attackRange;
+    [Header("Attack Spec")]
+    [SerializeField] public float attackRange;
 
     private Transform playerTransform;
     private EnemyAnimController enemyAnimController;
     private EnemyAttackBase enemyAttack;
     private EnemyState enemyState;
-    private Patrolling patrolling;
-
+    
     void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
         enemyAnimController = GetComponent<EnemyAnimController>();
         enemyAttack = GetComponent<EnemyAttackBase>();
         enemyState = GetComponent<EnemyState>();
-        patrolling = GetComponentInParent<Patrolling>();
     }
 
     void Update()
@@ -34,33 +33,32 @@ public class EnemyMovement : MonoBehaviour
 
             if ((distanceToPlayer <= attackRange) && enemyState.CanAttack)
             {   
-                enemyState.SetHitChase(false);
-                enemyState.SetDoPatrol(false);
+                enemyState.DisableHitChase();
+                enemyState.SetIsPatrolling(false);
                 enemyAnimController.SetIsmoving(false);
 
-                StartCoroutine(Attack());
+                StartCoroutine(ReadyAttack());
             }
             else if (enemyState.HitChase || ((distanceToPlayer <= chaseRange) && (distanceToPlayer >= attackRange) && enemyState.CanChase))
             {
-                enemyState.SetDoPatrol(false);
+                enemyState.SetIsPatrolling(false);
                 enemyAnimController.SetIsmoving(true);
                 Chase();
             }
             else if (distanceToPlayer > chaseRange)
-            {
-                enemyState.SetDoPatrol(true);
+            {   
+                enemyAnimController.SetIsmoving(false);
+                enemyState.SetIsPatrolling(true);
             }
         }
     }
 
-    private IEnumerator Attack()
+    private IEnumerator ReadyAttack()
     {   
         enemyState.SetCanChase(false);
         enemyState.SetCanAttacK(false);
         yield return new WaitForSeconds(enemyAttack.beforeAttackDelay);
 
-        enemyAnimController.FlipSprite((playerTransform.position - transform.position).normalized);
-        enemyAnimController.TriggerAttack();
         enemyAttack.Attack((Vector2)playerTransform.position);
 
         yield return new WaitForSeconds(enemyAttack.afterAttackDelay);
