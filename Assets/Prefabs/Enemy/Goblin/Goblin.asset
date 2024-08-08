@@ -26,23 +26,26 @@ MonoBehaviour:
   animatorSettings:
     controller: {fileID: 9100000, guid: da7403b8dd1d4954d89d2d1fd4a1a89d, type: 2}
   movementSettings:
-    chaseSpeed: 0.5
+    chaseSpeed: 1
     chaseRange: 5
-    attackRange: 1
   attackSettings:
-    targetLayerMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    attackType: 0
+    attackTypes: 00000000
     beforeAttackDelay: 0.5
-    afterAttackDelay: 1
-    damages: 0a0000000f000000
-    attackTriggers:
+    contactDamage: 10
+    meleeCooldowns:
+    - 1
+    - 2
+    meleeTriggers:
     - Attack1
     - Attack2
-    knockbackForce: 0.5
+    meleeDamages: 0a00000014000000
+    meleeEffectiveRange: 1
     meleeAttackRadius: 1.25
-    projectilePrefab: {fileID: 0}
+    knockbackForce: 0.3
+    projectilePrefabs: []
+    rangedTriggers: []
+    rangedCooldowns: []
+    rangedEffectiveRange: 0
   healthSettings:
     maxHealth: 50
     floatingDamagePrefab: {fileID: 4819425487490816618, guid: e215095b3832917469951bc63ccff4df,

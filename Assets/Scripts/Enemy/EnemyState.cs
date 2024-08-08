@@ -33,18 +33,25 @@ public class EnemyState : MonoBehaviour
         private set { _isPatrolling = value; }
     }
 
+    public bool IsAttacking
+    {
+        get { return _isAttacking; }
+        private set { _isAttacking = value; }
+    }
+
     private bool _isAlive = true;
     private bool _canAttack = true;
     private bool _canChase = true;
     private bool _hitChase = false;
     private bool _isPatrolling = true;
+    private bool _isAttacking = false;
 
     public void DisableIsAlive()
     {
         IsAlive = false;
     }
 
-    public void SetCanAttacK(bool value)
+    public void SetCanAttack(bool value)
     {
         CanAttack = value;
     }
@@ -68,5 +75,9 @@ public class EnemyState : MonoBehaviour
     {
         IsPatrolling = value;
     }
-
+    
+    public void SetIsAttacking(bool value)
+    {
+        IsAttacking = value;
+    }
 }

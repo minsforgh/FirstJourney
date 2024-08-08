@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class EnemyAnimController : MonoBehaviour
 {
-    [SerializeField] Animator enemyAnimator;
-    [SerializeField] SpriteRenderer enemyRenderer;
+    private Animator enemyAnimator;
+    private SpriteRenderer enemyRenderer;
+
+    private bool orgFlipX;
 
     private void Awake()
     {
         enemyAnimator = GetComponent<Animator>();
         enemyRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        orgFlipX = enemyRenderer.flipX;
     }
 
     public void SetIsmoving(bool isMoving)
@@ -37,11 +44,11 @@ public class EnemyAnimController : MonoBehaviour
     {
         if(directionToPlayer.x > 0)
         {
-            enemyRenderer.flipX = false;
+            enemyRenderer.flipX = orgFlipX;
         }
         else if(directionToPlayer.x < 0)
         {
-            enemyRenderer.flipX = true;
+            enemyRenderer.flipX = !orgFlipX;
         }
     }
 }

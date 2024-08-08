@@ -27,21 +27,24 @@ MonoBehaviour:
   movementSettings:
     chaseSpeed: 0.5
     chaseRange: 4
-    attackRange: 1.5
   attackSettings:
-    targetLayerMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    attackType: 0
-    beforeAttackDelay: 0.5
-    afterAttackDelay: 1
-    damages: 0f0000000f000000
-    attackTriggers:
+    attackTypes: 00000000
+    beforeAttackDelay: 1
+    contactDamage: 15
+    meleeCooldowns:
+    - 1
+    - 2
+    meleeTriggers:
     - Attack1
     - Attack2
-    knockbackForce: 0.7
+    meleeDamages: 0f00000014000000
+    meleeEffectiveRange: 1.5
     meleeAttackRadius: 1.75
-    projectilePrefab: {fileID: 0}
+    knockbackForce: 0.7
+    projectilePrefabs: []
+    rangedTriggers: []
+    rangedCooldowns: []
+    rangedEffectiveRange: 0
   healthSettings:
     maxHealth: 100
     floatingDamagePrefab: {fileID: 4819425487490816618, guid: e215095b3832917469951bc63ccff4df,

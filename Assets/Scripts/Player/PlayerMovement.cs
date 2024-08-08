@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
-using System.Runtime.CompilerServices;
 
 public class PlayerMovement : MonoBehaviour
 {

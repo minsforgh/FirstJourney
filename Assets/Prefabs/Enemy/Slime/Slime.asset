@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererSettings:
     sprite: {fileID: 21300000, guid: 6e4460827a2fe4f43b83b4c9c55ec1dd, type: 3}
+    flipX: 1
     sortingLayerName: Enemy
   rigidbodySettings:
     bodyType: 1
@@ -26,23 +27,27 @@ MonoBehaviour:
     controller: {fileID: 9100000, guid: 2ac4eb80a38fc0845894f389e30c9f30, type: 2}
   movementSettings:
     chaseSpeed: 0.5
-    chaseRange: 4
-    attackRange: 1.5
+    chaseRange: 3
   attackSettings:
-    targetLayerMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    attackType: 0
+    attackTypes: 00000000
     beforeAttackDelay: 1
-    afterAttackDelay: 1
-    damages: 050000000a00000005000000
-    attackTriggers:
+    contactDamage: 15
+    meleeCooldowns:
+    - 2
+    - 1.5
+    - 2.5
+    meleeTriggers:
     - Attack1
     - Attack2
     - Attack3
-    knockbackForce: 0.5
+    meleeDamages: 0a0000000f00000014000000
+    meleeEffectiveRange: 1.5
     meleeAttackRadius: 1.75
-    projectilePrefab: {fileID: 0}
+    knockbackForce: 0.5
+    projectilePrefabs: []
+    rangedTriggers: []
+    rangedCooldowns: []
+    rangedEffectiveRange: 0
   healthSettings:
     maxHealth: 50
     floatingDamagePrefab: {fileID: 4819425487490816618, guid: e215095b3832917469951bc63ccff4df,
@@ -52,6 +57,7 @@ MonoBehaviour:
     dropItem: {fileID: 1984213903777041406, guid: 8c687162a78cc404aaeac488d59794ec,
       type: 3}
   patrolSettings:
-    doesPatrol: 0
-    patrolRoute: {fileID: 0}
-    patrolSpeed: 0
+    doesPatrol: 1
+    patrolRoute: {fileID: 7901160547120257767, guid: 8514b9986e7aeab4cb0b4f40462993eb,
+      type: 3}
+    patrolSpeed: 0.6
