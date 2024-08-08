@@ -12,6 +12,9 @@ public class RangedWeaponData : WeaponData
     {
         Vector2 direction = (target - origin).normalized;
         Quaternion rotation = Quaternion.FromToRotation(Vector2.right, (Vector2)direction);
-        GameObject arrow = Instantiate(projectilePrefab, origin, rotation);
+        GameObject instance = Instantiate(projectilePrefab, origin, rotation);
+        Projectile projectile = instance.GetComponent<Projectile>();
+        projectile.targetLayerMask = LayerMask.GetMask("Enemy");
+
     }
 }

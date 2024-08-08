@@ -23,26 +23,34 @@ public class Patrol : MonoBehaviour
         body = transform.GetChild(0);
         enemyAnimController = body.GetComponent<EnemyAnimController>();
         enemyState = body.GetComponent<EnemyState>();
+
+        if (body == null || enemyAnimController == null || enemyState == null)
+        {
+            Debug.LogError("Initialization failed: Missing components on enemy body.");
+        }
     }
 
     private void Start()
     {
-        patrolRoute = Instantiate(patrolRoutePrefab, transform);
-        current = 0;
-
-        pointList = new List<Transform>();
-        if (patrolRoute != null)
+        if (DoesPatrol)
         {
-            foreach (Transform child in patrolRoute.transform)
+            patrolRoute = Instantiate(patrolRoutePrefab, transform);
+            current = 0;
+
+            pointList = new List<Transform>();
+            if (patrolRoute != null)
             {
-                pointList.Add(child);
+                foreach (Transform child in patrolRoute.transform)
+                {
+                    pointList.Add(child);
+                }
             }
         }
     }
 
     private void Update()
     {
-        if (enemyState.IsPatrolling && DoesPatrol)
+        if (enemyState.IsPatrolling && DoesPatrol && enemyState.IsAlive)
         {
             ContinuePatrol();
         }

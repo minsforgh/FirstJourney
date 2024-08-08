@@ -11,7 +11,7 @@ public class EnemySettings : ScriptableObject
     public ColliderSettings colliderSettings;
     public AnimatorSettings animatorSettings;
 
-    public MovementSettings movementSettings;
+    public ChaseSettings movementSettings;
     public AttackSettings attackSettings;
     public HealthSettings healthSettings;
     public DropSettings dropSettings;
@@ -23,6 +23,7 @@ public class EnemySettings : ScriptableObject
 public class RendererSettings
 {
     public Sprite sprite;
+    public bool flipX;
     public string sortingLayerName;
 }
 
@@ -35,7 +36,7 @@ public class RigidbodySettings
 
 [System.Serializable]
 public class ColliderSettings
-{   
+{
     public ColliderType colliderType;
     public Vector2 offset;
     public Vector2 size;
@@ -53,27 +54,33 @@ public class AnimatorSettings
 }
 
 [System.Serializable]
-public class MovementSettings
+public class ChaseSettings
 {
     public float chaseSpeed;
     public float chaseRange;
-    public float attackRange;
 }
 
 [System.Serializable]
 public class AttackSettings
 {   
-    public LayerMask targetLayerMask;
-    public AttackType attackType;
-    public float beforeAttackDelay;
-    public float afterAttackDelay;
-    public int[] damages;
-    public string[] attackTriggers;
-    public float knockbackForce;
+    public List<AttackType> attackTypes; // 공격 타입 리스트
+    public float beforeAttackDelay; // 공격 전 딜레이
+    public float contactDamage;  // 접촉 시 데미지
 
-    public float meleeAttackRadius; // only for melee
-    public GameObject projectilePrefab; // only for ranged;
+    // for melee attack
+    public float[] meleeCooldowns; // 근접 공격의 쿨타임
+    public string[] meleeTriggers; // 애니메이션 트리거 배열
+    public int[] meleeDamages; // 각 공격의 데미지 배열
+    public float meleeEffectiveRange; // 근접 공격의 유효 사거리
+    public float meleeAttackRadius; // 공격 범위  
+    public float knockbackForce; // 플레이어를 넉백시킬 힘
 
+    //for ranged attack
+    public GameObject[] projectilePrefabs; // 발사할 투사체 프리팹 배열
+    public string[] rangedTriggers; // 애니메이션 트리거 배열
+    public float[] rangedCooldowns; // 근접 공격의 쿨타임
+    public float rangedEffectiveRange; // 원거리 공격의 유효 사거리
+    
     public enum AttackType
     {
         Melee,
@@ -83,7 +90,7 @@ public class AttackSettings
 
 [System.Serializable]
 public class HealthSettings
-{   
+{
     public float maxHealth;
     public GameObject floatingDamagePrefab;
 }

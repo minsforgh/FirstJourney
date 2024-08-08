@@ -12,7 +12,7 @@ public class EnemyCommonComponents : MonoBehaviour
 
     private EnemyAnimController animController;
     private EnemyState state;
-    private EnemyMovement movement;
+    private EnemyChase chase;
     private EnemyAttackBase attack;
     private EnemyHealth health;
     private EnemyDrop drop;
@@ -41,6 +41,7 @@ public class EnemyCommonComponents : MonoBehaviour
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = settings.rendererSettings.sprite;
+            spriteRenderer.flipX = settings.rendererSettings.flipX;
             spriteRenderer.sortingLayerName = settings.rendererSettings.sortingLayerName;
         }
     }
@@ -99,42 +100,45 @@ public class EnemyCommonComponents : MonoBehaviour
     {
         if (settings != null && settings.movementSettings != null)
         {
-            movement = gameObject.AddComponent<EnemyMovement>();
-            movement.chaseSpeed = settings.movementSettings.chaseSpeed;
-            movement.chaseRange = settings.movementSettings.chaseRange;
-            movement.attackRange = settings.movementSettings.attackRange;
+            chase = gameObject.AddComponent<EnemyChase>();
+            chase.chaseSpeed = settings.movementSettings.chaseSpeed;
+            chase.chaseRange = settings.movementSettings.chaseRange;
         }
     }
 
     void InitializeAttack()
     {
         if (settings != null && settings.attackSettings != null)
-        {
-            switch (settings.attackSettings.attackType)
+        {   
+            var enemyAttackManager = gameObject.AddComponent<EnemyAttackManager>();
+            enemyAttackManager.beforeAttackDelay = settings.attackSettings.beforeAttackDelay;
+            enemyAttackManager.contactDamage = settings.attackSettings.contactDamage;
+            
+            for(var i = 0; i < settings.attackSettings.attackTypes.Count; i++)
             {
-                case AttackSettings.AttackType.Melee:
-                    var meleeAtk = gameObject.AddComponent<EnemyAttackMelee>();
-                    meleeAtk.targetLayerMask = settings.attackSettings.targetLayerMask;
-                    meleeAtk.beforeAttackDelay = settings.attackSettings.beforeAttackDelay;
-                    meleeAtk.afterAttackDelay = settings.attackSettings.afterAttackDelay;
-                    meleeAtk.damages = settings.attackSettings.damages;
-                    meleeAtk.attackTriggers = settings.attackSettings.attackTriggers;
-                    meleeAtk.knockbackForce = settings.attackSettings.knockbackForce;
+                var attackType = settings.attackSettings.attackTypes[i];
+                switch(attackType)
+                {
+                    case AttackSettings.AttackType.Melee:
+                        var meleeAtk = gameObject.AddComponent<EnemyMeleeAttack>();
+                        meleeAtk.cooldowns = settings.attackSettings.meleeCooldowns;
+                        meleeAtk.attackTriggers = settings.attackSettings.meleeTriggers;
+                        meleeAtk.damages = settings.attackSettings.meleeDamages;
+                        meleeAtk.effectiveRange = settings.attackSettings.meleeEffectiveRange;
+                        meleeAtk.attackRadius = settings.attackSettings.meleeAttackRadius;
+                        meleeAtk.knockbackForce = settings.attackSettings.knockbackForce;
+                        enemyAttackManager.attackTypes.Add(meleeAtk);
+                        break;
 
-                    meleeAtk.attackAreaRadius = settings.attackSettings.meleeAttackRadius;
-                    break;
-
-                case AttackSettings.AttackType.Ranged:
-                    var rangedAtk = gameObject.AddComponent<EnemyAttackRanged>();
-                    rangedAtk.targetLayerMask = settings.attackSettings.targetLayerMask;
-                    rangedAtk.beforeAttackDelay = settings.attackSettings.beforeAttackDelay;
-                    rangedAtk.afterAttackDelay = settings.attackSettings.afterAttackDelay;
-                    rangedAtk.damages = settings.attackSettings.damages;
-                    rangedAtk.attackTriggers = settings.attackSettings.attackTriggers;
-                    rangedAtk.knockbackForce = settings.attackSettings.knockbackForce;
-
-                    rangedAtk.projectilePrefab = settings.attackSettings.projectilePrefab;
-                    break;
+                    case AttackSettings.AttackType.Ranged:
+                        var rangedAtk = gameObject.AddComponent<EnemyAttackRanged>();
+                        rangedAtk.projectilePrefabs = settings.attackSettings.projectilePrefabs;
+                        rangedAtk.attackTriggers = settings.attackSettings.rangedTriggers;
+                        rangedAtk.cooldowns = settings.attackSettings.rangedCooldowns;
+                        rangedAtk.effectiveRange = settings.attackSettings.rangedEffectiveRange;
+                        enemyAttackManager.attackTypes.Add(rangedAtk);
+                        break;
+                }
             }
         }
     }
@@ -165,7 +169,7 @@ public class EnemyCommonComponents : MonoBehaviour
     void InitializePatrol()
     {
         patrol = transform.parent.AddComponent<Patrol>();
-        if(settings.patrolSettings.doesPatrol)
+        if (settings.patrolSettings.doesPatrol)
         {
             patrol.DoesPatrol = settings.patrolSettings.doesPatrol;
             patrol.patrolRoutePrefab = settings.patrolSettings.patrolRoute;

@@ -17,6 +17,8 @@ public class NPCInteraction : MonoBehaviour
     
     public UnityEvent ShowUIEvent;
 
+    private PlayerMovement playerMovement;
+
     private void Awake()
     {
         var inputActions = new Interaction();
@@ -30,6 +32,8 @@ public class NPCInteraction : MonoBehaviour
     {
         interact.Enable();
         ShowUIEvent.AddListener(() => PlayerState.Instance.SetIsInteracting(true));
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        ShowUIEvent.AddListener(playerMovement.StopPlayer);
     }
 
     private void OnDisable()
