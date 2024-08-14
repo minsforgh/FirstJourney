@@ -23,8 +23,8 @@ TagManager:
   - Effect
   - Projectile
   - NPC
-  - 
-  - 
+  - Interactable
+  - Environment
   - 
   - Layer 1
   - Layer 2
@@ -57,17 +57,26 @@ TagManager:
   - name: 
     uniqueID: 2818867849
     locked: 0
+  - name: NPC
+    uniqueID: 2752815229
+    locked: 0
   - name: Enemy
     uniqueID: 1840403755
     locked: 0
-  - name: NPC
-    uniqueID: 2752815229
+  - name: Interactable
+    uniqueID: 1920468541
     locked: 0
   - name: Player
     uniqueID: 1997253617
     locked: 0
+  - name: Environment
+    uniqueID: 3249535451
+    locked: 0
   - name: Item
     uniqueID: 2651355163
+    locked: 0
+  - name: Projectile
+    uniqueID: 2369524207
     locked: 0
   - name: Effect
     uniqueID: 4209863691

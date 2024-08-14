@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd44895c1abf8d459d75cb1c31c079e, type: 3}
+  m_Name: EvilWizard
+  m_EditorClassIdentifier: 
+  items: []
+  chest: {fileID: 3877851120948959939, guid: a5ee3cc8db6cf2147897125f9787ca6b, type: 3}
+  dropRates: []
+  coin: {fileID: 11400000, guid: fb2d0bcf29d6b0d48bd70fbef6fe4190, type: 2}
+  maxCoinValue: 0

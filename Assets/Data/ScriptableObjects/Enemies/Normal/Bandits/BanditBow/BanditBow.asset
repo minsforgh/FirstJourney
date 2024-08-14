@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7232cdf8d218d489825f2fb08705fd, type: 3}
+  m_Name: BanditBow
+  m_EditorClassIdentifier: 
+  basicSettings: {fileID: 11400000, guid: b156ba799e244784eb9a3a57a4a45bcc, type: 2}
+  chaseSettings: {fileID: 11400000, guid: 5ccbc74a6fc823b45ae21e0f7d62be13, type: 2}
+  attackSettings: {fileID: 11400000, guid: 855cf76120035d44082c3a3f3de19d0f, type: 2}
+  healthSettings: {fileID: 11400000, guid: 3808197ec5df5ac41a07bc37377aaeee, type: 2}
+  dropSettings: {fileID: 11400000, guid: 2efd55bed0f2d3a4eb85f42d6d0e3a88, type: 2}
+  patrolSettings: {fileID: 11400000, guid: c24687cf11b03e3488427c70158b1862, type: 2}

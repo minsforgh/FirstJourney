@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c108b1c2ce8754081789a868eadf2d, type: 3}
+  m_Name: EvilWizard
+  m_EditorClassIdentifier: 
+  basicSettings: {fileID: 11400000, guid: 6d077b44454cd314ca09715b36cc1de9, type: 2}
+  chaseSettings: {fileID: 11400000, guid: e9f32b4822916e4458cffb65231f33be, type: 2}
+  attackSettings: {fileID: 11400000, guid: 82c08b7d7032c9e41bf33c45500775f8, type: 2}
+  healthSettings: {fileID: 11400000, guid: 9442356bacf323d4bb38fdb805e73a79, type: 2}
+  dropSettings: {fileID: 11400000, guid: 26f39aac53960434482c6145426df406, type: 2}
+  patrolSettings: {fileID: 0}
