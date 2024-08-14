@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe5ba2b2ef88f84581b1b5d62fa2642, type: 3}
+  m_Name: GoblinBasic
+  m_EditorClassIdentifier: 
+  rendererSettings:
+    sprite: {fileID: -7385789195546760866, guid: 1018b0ba13578bf459bd254ae1a2be99,
+      type: 3}
+    flipX: 0
+    sortingLayerName: Enemy
+  rigidbodySettings:
+    bodyType: 0
+    UseFullKinematiccontacts: 1
+    freezeRotation: 1
+    linearDrag: 10
+    gravityScale: 0
+  colliderSettings:
+    colliderType: 1
+    offset: {x: 0, y: 0}
+    size: {x: 1, y: 1.3}
+  animatorSettings:
+    controller: {fileID: 9100000, guid: da7403b8dd1d4954d89d2d1fd4a1a89d, type: 2}

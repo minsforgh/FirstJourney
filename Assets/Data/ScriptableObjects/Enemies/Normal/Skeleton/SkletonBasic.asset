@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe5ba2b2ef88f84581b1b5d62fa2642, type: 3}
+  m_Name: SkletonBasic
+  m_EditorClassIdentifier: 
+  rendererSettings:
+    sprite: {fileID: 21300000, guid: ae44d6ca9dc728943a492226b377d3f4, type: 3}
+    flipX: 0
+    sortingLayerName: Enemy
+  rigidbodySettings:
+    bodyType: 0
+    UseFullKinematiccontacts: 0
+    freezeRotation: 1
+    linearDrag: 10
+    gravityScale: 0
+  colliderSettings:
+    colliderType: 1
+    offset: {x: 0, y: 0}
+    size: {x: 1.1, y: 1.8}
+  animatorSettings:
+    controller: {fileID: 9100000, guid: 20d3b6e5a83eb0e45adb04422cdf82ab, type: 2}

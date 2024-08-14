@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe5ba2b2ef88f84581b1b5d62fa2642, type: 3}
+  m_Name: SlimeBasic
+  m_EditorClassIdentifier: 
+  rendererSettings:
+    sprite: {fileID: 21300000, guid: 6e4460827a2fe4f43b83b4c9c55ec1dd, type: 3}
+    flipX: 1
+    sortingLayerName: Enemy
+  rigidbodySettings:
+    bodyType: 1
+    UseFullKinematiccontacts: 1
+  colliderSettings:
+    colliderType: 0
+    offset: {x: -0.1, y: 0.1}
+    size: {x: 1.2, y: 0.85}
+  animatorSettings:
+    controller: {fileID: 9100000, guid: 2ac4eb80a38fc0845894f389e30c9f30, type: 2}

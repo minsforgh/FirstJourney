@@ -2,7 +2,7 @@
     "name": "Interaction",
     "maps": [
         {
-            "name": "NPC",
+            "name": "Interactable",
             "id": "5f21ab72-bbca-4ffe-a953-2385c9a0a3f6",
             "actions": [
                 {
