@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
-{
+{   
     public static WeaponManager Instance { get; private set; }
 
-    [SerializeField] private PlayerAnimController animController;
-    [SerializeField] private PlayerAttack playerAttack;
+    private PlayerController playerController;
+    private PlayerAnimController playerAnimController;
+    private PlayerState playerState;
+    private PlayerAttack playerAttack;
+    
     [SerializeField] private Hand hand;
     [SerializeField] private SpriteRenderer curWeaponRenderer;
 
@@ -35,7 +38,9 @@ public class WeaponManager : MonoBehaviour
     }
 
     void Start()
-    {
+    {   
+        Init();
+
         UpdateInvenWeaponSlot();
         UpdateInfoWeaponSlots();
         StartCoroutine(EquipWeapon(0));
@@ -47,6 +52,14 @@ public class WeaponManager : MonoBehaviour
         {
             ChangeWeaponBySlot();
         }
+    }
+
+    private void Init()
+    {
+        playerController = FindAnyObjectByType<PlayerController>();
+        playerAnimController = playerController.GetPlayerAnimController();
+        playerState = playerController.GetPlayerState();
+        playerAttack = playerController.GetPlayerAttack();
     }
 
     public void AddEquippedWeapon(WeaponData weapon)
@@ -94,8 +107,8 @@ public class WeaponManager : MonoBehaviour
         curWeaponRenderer.flipY = currentWeapon.SpriteFlipY;
 
         playerAttack.CurrentWeapon = currentWeapon;
-        animController.SetWeaponAnimController(currentWeapon.AnimationController);
-        PlayerState.Instance.SetCanAttack(true);
+        playerAnimController.SetWeaponAnimController(currentWeapon.AnimationController);
+        playerState.SetCanAttack(true);
 
         //이전 장착 슬롯의 복구
         Image backgroundBox = infoWeaponSlots[currentSlotIndex].transform.parent.GetComponent<Image>();
@@ -114,12 +127,12 @@ public class WeaponManager : MonoBehaviour
 
     public void UnEquipWeapon(int weaponIndex)
     {
-        PlayerState.Instance.SetCanAttack(false);
+        playerState.SetCanAttack(false);
         currentWeapon = null;
         curWeaponRenderer.sprite = null;
 
         playerAttack.CurrentWeapon = null;
-        animController.SetWeaponAnimController(null);
+        playerAnimController.SetWeaponAnimController(null);
 
         Image backgroundBox = infoWeaponSlots[weaponIndex].transform.parent.GetComponent<Image>();
         backgroundBox.color = new Color(0, 0, 0, 0.25f);

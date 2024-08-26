@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c108b1c2ce8754081789a868eadf2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b7232cdf8d218d489825f2fb08705fd, type: 3}
   m_Name: EvilWizard
   m_EditorClassIdentifier: 
   basicSettings: {fileID: 11400000, guid: 6d077b44454cd314ca09715b36cc1de9, type: 2}

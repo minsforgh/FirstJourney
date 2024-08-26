@@ -40,6 +40,11 @@ public class EnemyAnimController : MonoBehaviour
         enemyAnimator.SetTrigger("Die");
     }
 
+    public void SetSpecialAttack(bool isSpecialAttack)
+    {
+        enemyAnimator.SetBool("Special", isSpecialAttack);
+    }
+    
     public void FlipSprite(Vector2 directionToPlayer)
     {
         if(directionToPlayer.x > 0)

@@ -17,8 +17,12 @@ MonoBehaviour:
     flipX: 0
     sortingLayerName: Enemy
   rigidbodySettings:
-    bodyType: 1
+    bodyType: 0
     UseFullKinematiccontacts: 1
+    freezeRotation: 1
+    linearDrag: 10
+    gravityScale: 0
+    collisionDetectionMode: 1
   colliderSettings:
     colliderType: 1
     offset: {x: 0, y: 0}

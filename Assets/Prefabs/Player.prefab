@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2834272569660040473}
   - component: {fileID: 2834272569660040471}
   - component: {fileID: 2834272569660040470}
+  - component: {fileID: 8897695085789404435}
   - component: {fileID: -7601738903282587352}
   - component: {fileID: 2834272569660040474}
   - component: {fileID: 2834272570110135748}
@@ -208,6 +209,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8897695085789404435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834272569660040477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ba80fd4a48e884fa55421bc3845b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-7601738903282587352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,34 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218a1a64fbb23554588a492c809af72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  TakeDamgeEvent:
+  maxHealth: 150
+  TakeDamageEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7798772730261338936}
-        m_TargetAssemblyTypeName: PlayerAnimController, Assembly-CSharp
-        m_MethodName: PlayHitEffectCoroutine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2834272569660040474}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Invincible
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2834272570110135747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,9 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e14084cb4454d542881e073432e9b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 2834272569660040470}
-  handAnimator: {fileID: 887951599}
-  playerSpriteRenderer: {fileID: 2834272569660040476}
   hitMaterial: {fileID: 2100000, guid: bc892948f3bf12040b40485577a00d70, type: 2}
   dodgeMaterial: {fileID: 2100000, guid: b719c7389dc42184bb01df3faae833e4, type: 2}
 --- !u!1 &2834272570457390297

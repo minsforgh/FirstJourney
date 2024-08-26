@@ -5,7 +5,11 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class NPCInteraction : MonoBehaviour
-{   
+{
+    private PlayerController playerController;
+    private PlayerState playerState;
+    private PlayerMovement playerMovement;
+
     [SerializeField] private GameObject interactionUIPrefab;
     public GameObject interactionUIInstance;
 
@@ -14,10 +18,9 @@ public class NPCInteraction : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Color oldColor;
-    
-    public UnityEvent ShowUIEvent;
 
-    private PlayerMovement playerMovement;
+    public UnityEvent ShowUIEvent = new UnityEvent();
+    public UnityEvent HideUIEvent = new UnityEvent();
 
     private void Awake()
     {
@@ -28,18 +31,34 @@ public class NPCInteraction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Init()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+
+        if (playerController != null)
+        {
+            playerState = playerController.GetPlayerState();
+            playerMovement = playerController.GetPlayerMovement();
+        }
+        else
+        {
+            Debug.LogError("PlayerController not found in the scene.");
+        }
+    }
+
     private void OnEnable()
     {
         interact.Enable();
-        ShowUIEvent.AddListener(() => PlayerState.Instance.SetIsInteracting(true));
-        playerMovement = FindObjectOfType<PlayerMovement>();
-        ShowUIEvent.AddListener(playerMovement.StopPlayer);
     }
 
     private void OnDisable()
     {
         interact.Disable();
-        ShowUIEvent.RemoveAllListeners();
+    }
+
+    private void Start()
+    {
+        Init();
     }
 
     private void OnInteractNPC(InputAction.CallbackContext context)
@@ -58,17 +77,30 @@ public class NPCInteraction : MonoBehaviour
     }
 
     private void ShowInteractionUI()
-    {   
-        ShowUIEvent?.Invoke();
+    {
+        playerState.SetIsInteracting(true);
+        playerMovement.StopPlayer();
+
         AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
         interactionUIInstance = UIManager.Instance.CreateUI(interactionUIPrefab);
     }
 
     public void HideInteractionUI()
-    {
+    {   
+        if (playerState == null)
+        {
+            Debug.Log("PlayerState is null");
+            Init();
+        }
+        playerState.SetIsInteracting(false);
+
         AudioManager.Instance.PlayAudio(AudioClipType.Decline);
-        PlayerState.Instance.SetIsInteracting(false);
-        UIManager.Instance.DestroyUI(interactionUIInstance);
+
+        // interaction (space)로 끌 경우
+        if (interactionUIInstance != null)
+        {
+            UIManager.Instance.DestroyUI(interactionUIInstance);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -85,7 +117,6 @@ public class NPCInteraction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            HideInteractionUI();
             UndoHighlight();
         }
     }
@@ -101,5 +132,4 @@ public class NPCInteraction : MonoBehaviour
     {
         spriteRenderer.color = oldColor;
     }
-
 }

@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public static PlayerState Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    
     public bool CanMove
     {
         get { return _canMove; }
@@ -63,7 +49,8 @@ public class PlayerState : MonoBehaviour
     }
     
     public void SetIsInteracting(bool value)
-    {
+    {   
+        Debug.Log("SetIsInteracting: " + value);
         IsInteracting = value;
     }
 }

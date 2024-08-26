@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {   
+    private PlayerController playerController;
+    private PlayerState playerState;
+    private PlayerAnimController playerAnimController;
     private PlayerMovement playerMovement;
-    private PlayerAnimController animController;
+
     public WeaponData CurrentWeapon { get; set; } // 현재 장착한 무기
-    
-    void Start()
+
+    public void Init(PlayerController controller)
     {   
-        playerMovement = GetComponent<PlayerMovement>();
-        animController = GetComponent<PlayerAnimController>();
+        playerController = controller;
+        playerState = playerController.GetPlayerState();
+        playerAnimController = playerController.GetPlayerAnimController();
+        playerMovement = playerController.GetPlayerMovement();
     }
 
     void OnAttack()
-    {   
-        if (PlayerState.Instance.CanAttack && CurrentWeapon != null && !PlayerState.Instance.IsInteracting)
-        {   
+    {
+        if (playerState.CanAttack && CurrentWeapon != null && !playerState.IsInteracting)
+        {
             playerMovement.StopPlayer();
-            PlayerState.Instance.SetCanAttack(false);
-            PlayerState.Instance.SetCanMove(false);
+            playerState.SetCanAttack(false);
+            playerState.SetCanMove(false);
 
             StartCoroutine(Attack());
         }
@@ -32,16 +37,16 @@ public class PlayerAttack : MonoBehaviour
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
         int directionIndex = ConsiderDirection(direction);
 
-        animController.SetAttackDirection(directionIndex);
-        animController.TriggerAttack();
+        playerAnimController.SetAttackDirection(directionIndex);
+        playerAnimController.TriggerAttack();
 
         CurrentWeapon.Attack(transform.position, mousePosition, directionIndex);
 
         yield return new WaitForSeconds(CurrentWeapon.AttackCoolTime);
-        PlayerState.Instance.SetCanAttack(true);
+        playerState.SetCanAttack(true);
 
         yield return new WaitForSeconds(CurrentWeapon.AfterAttackDelay);
-        PlayerState.Instance.SetCanMove(true);
+        playerState.SetCanMove(true);
     }
 
     int ConsiderDirection(Vector2 direction)
@@ -55,8 +60,8 @@ public class PlayerAttack : MonoBehaviour
 
         int directionIndex = Mathf.RoundToInt(angle / 45f) % 8;
 
-        animController.FlipByDirection(directionIndex);
-        animController.SetLastMovement(direction);
+        playerAnimController.FlipByDirection(directionIndex);
+        playerAnimController.SetLastMovement(direction);
 
         return directionIndex;
     }

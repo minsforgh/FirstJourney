@@ -61,6 +61,7 @@ public class EnemyCommonComponents : MonoBehaviour
             rb.bodyType = settings.basicSettings.rigidbodySettings.bodyType;
             rb.useFullKinematicContacts = settings.basicSettings.rigidbodySettings.UseFullKinematiccontacts;
             rb.freezeRotation = settings.basicSettings.rigidbodySettings.freezeRotation;
+            rb.mass = settings.basicSettings.rigidbodySettings.mass;
             rb.drag = settings.basicSettings.rigidbodySettings.linearDrag;
             rb.gravityScale = settings.basicSettings.rigidbodySettings.gravityScale;
             rb.collisionDetectionMode = settings.basicSettings.rigidbodySettings.collisionDetectionMode;

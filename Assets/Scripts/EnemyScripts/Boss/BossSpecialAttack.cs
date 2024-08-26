@@ -4,9 +4,18 @@ using UnityEngine;
 
 public abstract class BossSpecialAttack : MonoBehaviour
 {
-    public bool isEnable;
-    public string triggerName;
+    protected EnemyAnimController enemyAnimController;
+    protected HealthInterface health;
+    protected EnemyState enemyState;
+    public BossManager bossManager;
 
-    public abstract void SpecialAttack();
-        
+    protected virtual void Start()
+    {   
+        enemyState = GetComponent<EnemyState>();
+        enemyAnimController = GetComponent<EnemyAnimController>();
+        health = GetComponent<HealthInterface>();
+    }
+
+    public abstract IEnumerator SpecialAttack();
+
 }

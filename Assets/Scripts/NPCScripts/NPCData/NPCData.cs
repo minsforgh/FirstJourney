@@ -13,6 +13,7 @@ abstract public class NPCData : ScriptableObject
     [SerializeField] private int _id;
     [SerializeField] private string _name;
     [SerializeField] private Sprite _icon;
+    [TextArea]
     [SerializeField] private string _talk;
 
 }

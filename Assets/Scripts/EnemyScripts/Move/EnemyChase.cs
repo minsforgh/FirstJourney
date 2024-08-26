@@ -53,13 +53,13 @@ public class EnemyChase : MonoBehaviour
     }
 
     protected void Chase()
-    {
+    {   
+        // 공격 후의 Delay를 그대로 이용하여, 공격 직후 바로 추격하지 못하게 구현
         if (enemyState.CanAttack)
         {
             enemyAnimController.SetIsmoving(true);
             Vector2 direction = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
             rigidBody.MovePosition(rigidBody.position + direction * chaseSpeed * Time.deltaTime);
-            // transform.position += (Vector3)(direction * chaseSpeed * Time.deltaTime);
             enemyAnimController.FlipSprite(direction);
         }
         else

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d5cec376f3aca4fac10ebd05295d1d, type: 3}
   m_Name: SkeletonAttack
   m_EditorClassIdentifier: 
-  beforeAttackDelay: 1
-  contactDamage: 10
-  contactKnockbackForce: 1
+  beforeAttackDelay: 0.75
+  contactDamage: 5
+  contactKnockbackForce: 0.75
   meleeSettings: {fileID: 11400000, guid: 4458d2cd80bc3a340b2e229b48f07933, type: 2}
   rangedSettings: {fileID: 0}

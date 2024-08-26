@@ -5,13 +5,19 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour, HealthInterface
 {
-    [SerializeField] float maxHealth = 100;
+    [SerializeField] private float maxHealth = 100;
     private float currentHealth;
-    public UnityEvent TakeDamgeEvent;
+    public UnityEvent TakeDamageEvent;
 
-    void Start()
+    private void Start()
+    {
+        //PlayerInfo.Instance.UpdatePlayerHp();
+    }
+
+    public void Init()
     {
         CurrentHealth = MaxHealth;
+        TakeDamageEvent = new UnityEvent();
     }
 
     public float CurrentHealth
@@ -22,12 +28,19 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
         {
             currentHealth = Mathf.Min(value, MaxHealth);
             if (currentHealth <= 0)
-            {   
+            {
                 AudioManager.Instance.PlayAudio(AudioClipType.PlayerDead);
                 currentHealth = 0;
                 Die();
             }
-            PlayerInfo.Instance.UpdatePlayerHp();
+            if (PlayerInfo.Instance == null)
+            {
+                Debug.Log("PlayerInfo is null");
+            }
+            else
+            {
+                PlayerInfo.Instance.UpdatePlayerHp();
+            }
         }
     }
 
@@ -42,14 +55,14 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
         }
     }
     public void TakeDamage(float amount)
-    {   
+    {
         AudioManager.Instance.PlayAudio(AudioClipType.PlayerHurt);
         CurrentHealth -= amount;
-        TakeDamgeEvent.Invoke();
+        TakeDamageEvent.Invoke();
     }
 
     void Die()
-    {   
+    {
         Destroy(gameObject);
         LevelManager.Instance.LoadEndScene();
     }

@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
     public UnityEvent DieEvent = new UnityEvent();
 
     private EnemyDrop enemyDrop;
+    private EnemyState enemyState;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
     private void Start()
     {
          enemyDrop = GetComponent<EnemyDrop>();
+         enemyState = GetComponent<EnemyState>();
     }
     
     private void OnDisable()
@@ -57,7 +59,17 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
         }
     }
     public void TakeDamage(float amount)
-    {
+    {   
+        if(damageSpawnPoint == null)
+        {
+            Debug.Log("damageSpawnPoint is null");
+            return;
+        }
+        if(enemyState.IsInvincible)
+        {
+            Debug.Log("Enemy is invincible");
+            return;
+        }
         GameObject damageText = Instantiate(floatingDamage, damageSpawnPoint.position, Quaternion.identity);
         damageText.GetComponent<FloatingDamage>().SetDamageText(amount);
         CurrentHealth -= amount;

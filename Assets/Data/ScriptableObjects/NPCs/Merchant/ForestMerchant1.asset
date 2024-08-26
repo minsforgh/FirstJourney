@@ -15,12 +15,14 @@ MonoBehaviour:
   _id: 7001
   _name: Bob
   _icon: {fileID: 21300000, guid: e4ab738c3a9c842b69fa93cbbff0ea53, type: 3}
-  _talk: Hi I'm Merchant.    Feel free to watch.
+  _talk: "Hi I'm a  Merchant. \nFeel free to watch."
   inventory:
   - {fileID: 11400000, guid: 8b676fad312e785408e8489640f2eda2, type: 2}
   - {fileID: 11400000, guid: 545a0e7dbc84e754eb5f7c3618ede776, type: 2}
   - {fileID: 11400000, guid: 6444672466e09e644be162fcefc2006b, type: 2}
   - {fileID: 11400000, guid: 8b676fad312e785408e8489640f2eda2, type: 2}
   - {fileID: 11400000, guid: 6444672466e09e644be162fcefc2006b, type: 2}
+  - {fileID: 11400000, guid: 545a0e7dbc84e754eb5f7c3618ede776, type: 2}
+  - {fileID: 11400000, guid: 545a0e7dbc84e754eb5f7c3618ede776, type: 2}
   - {fileID: 11400000, guid: 545a0e7dbc84e754eb5f7c3618ede776, type: 2}
   currentMoney: 1000

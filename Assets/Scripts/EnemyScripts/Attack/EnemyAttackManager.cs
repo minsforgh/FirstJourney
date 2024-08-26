@@ -36,6 +36,9 @@ public class EnemyAttackManager : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         // 공격 타입 리스트에서 가장 적절한 공격 타입을 선택
+        // 공격 타입 리스트는 공격 타입의 유효 사거리에 따라 정렬되어 있어야 함 (Melee -> Ranged)
+        // 가장 가까운 공격 타입을 선택
+        // 공격 타입 내에서도 유효 사거리의 차이를 두고 싶다면 GetEffectiveRange()가 유효사거리의 배열을 반환하도록 + 이중 배열
         foreach (var attackType in attackTypes)
         {
             if (distanceToPlayer <= attackType.GetEffectiveRange())

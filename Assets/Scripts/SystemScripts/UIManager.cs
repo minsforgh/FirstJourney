@@ -32,9 +32,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void DestroyUI(GameObject uiInstance)
-    {
+    {   
         if (uiInstance != null)
-        {
+        {   
             Destroy(uiInstance);
         }
     }
