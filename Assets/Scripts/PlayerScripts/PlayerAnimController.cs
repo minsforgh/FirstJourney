@@ -3,19 +3,26 @@ using System.Collections;
 using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
-{
-    [SerializeField] private Animator playerAnimator;
-    [SerializeField] private Animator handAnimator;
-    [SerializeField] private SpriteRenderer playerSpriteRenderer;
+{   
+    private PlayerController playerController;
+    private SpriteRenderer playerSpriteRenderer;
 
-    [Header ("Materials")]
+    private Animator playerAnimator;
+    private Animator handAnimator;
+
+    [Header("Materials")]
     [SerializeField] private Material hitMaterial;
     [SerializeField] private Material dodgeMaterial;
     private Material orgMaterial;
 
-    private void Start()
+    public void Init(PlayerController controller)
     {
+        playerController = controller;
+        playerSpriteRenderer = playerController.GetSpriteRenderer();
         orgMaterial = playerSpriteRenderer.material;
+
+        playerAnimator = GetComponent<Animator>();
+        handAnimator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     public void SetIsMoving(bool isMoving)
@@ -67,7 +74,7 @@ public class PlayerAnimController : MonoBehaviour
 
     public void FlipByDirection(int directionIndex)
     {
-        if(directionIndex > 1 && directionIndex < 6)
+        if (directionIndex > 1 && directionIndex < 6)
         {
             playerSpriteRenderer.flipX = true;
         }
@@ -95,7 +102,7 @@ public class PlayerAnimController : MonoBehaviour
     }
 
     private IEnumerator DodgeEffect(float invincibleTime)
-    {   
+    {
         playerSpriteRenderer.material = dodgeMaterial;
         yield return new WaitForSeconds(invincibleTime);
         playerSpriteRenderer.material = orgMaterial;

@@ -28,11 +28,24 @@ public class EnemyState : MonoBehaviour
         private set { _isPatrolling = value; }
     }
 
+    public bool IsInvincible
+    {
+        get { return _isInvincible; }
+        private set { _isInvincible = value; }
+    }
+
+    public bool IsSpecialAttack
+    {
+        get { return _isSpecialAttack; }
+        private set { _isSpecialAttack = value; }
+    }
+
     private bool _isAlive = true;
     private bool _canAttack = true;
     private bool _hitChase = false;
     private bool _isPatrolling = true;
-   
+    private bool _isInvincible = false;
+    private bool _isSpecialAttack = false;
 
     public void DisableIsAlive()
     {
@@ -40,7 +53,13 @@ public class EnemyState : MonoBehaviour
     }
 
     public void SetCanAttack(bool value)
-    {
+    {   
+        // Special Attack 중에는 일반 공격 불가
+        if(IsSpecialAttack)
+        {
+            return;
+        }
+
         CanAttack = value;
     }
 
@@ -58,4 +77,14 @@ public class EnemyState : MonoBehaviour
     {
         IsPatrolling = value;
     }
-}
+
+    public void SetIsInvincible(bool value)
+    {
+        IsInvincible = value;
+    }
+
+    public void SetIsSpecialAttack(bool value)
+    {
+        IsSpecialAttack = value;
+    }
+}   

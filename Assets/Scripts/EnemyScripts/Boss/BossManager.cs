@@ -13,7 +13,7 @@ public class BossManager : MonoBehaviour
     public GameObject stageBlockPrefab;
     public GameObject stageBlockInstance;
     public Transform stageEntrance;
-    
+
     [TextArea]
     public string bossName;
 
@@ -33,6 +33,8 @@ public class BossManager : MonoBehaviour
         bossInstance = Instantiate(boss, bossCircle.transform.position + new Vector3(0, 5, 0), Quaternion.identity);  
         bossHealth = bossInstance.GetComponentInChildren<HealthInterface>();
         bossUI = Instantiate(bossInfoUIPrefab).GetComponentInChildren<BossUI>();
+        
+        bossInstance.GetComponentInChildren<BossSpecialAttack>().bossManager = this;
         SetBossInfoUI();
     }
 

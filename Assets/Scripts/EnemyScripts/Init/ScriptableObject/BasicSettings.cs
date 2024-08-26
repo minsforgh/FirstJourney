@@ -30,6 +30,7 @@ public class RigidbodySettings
     public RigidbodyType2D bodyType = RigidbodyType2D.Dynamic;
     public bool UseFullKinematiccontacts = true;
     public bool freezeRotation = true;
+    public float mass = 10f;
     public float linearDrag = 10f;
     public float gravityScale = 0f;
     public CollisionDetectionMode2D collisionDetectionMode = CollisionDetectionMode2D.Continuous;

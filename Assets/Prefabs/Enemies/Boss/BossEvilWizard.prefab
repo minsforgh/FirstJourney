@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5184086128354042259}
-  - component: {fileID: 1123578931802567191}
+  - component: {fileID: 9023270640638441890}
+  - component: {fileID: 4956555185484315333}
   m_Layer: 12
   m_Name: BoosEvilWizardBody
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 700353835421157360}
   m_Father: {fileID: 2486731240211759673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1123578931802567191
+--- !u!114 &9023270640638441890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +43,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 230026471603930525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4207fbab75409c4e88cf2b6c9b5408c, type: 3}
+  m_Script: {fileID: 11500000, guid: 246de94a96178154c8a6fb7b986d56a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: c40a3a820a7820641be958c69005b258, type: 2}
+--- !u!114 &4956555185484315333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230026471603930525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a9be026bf568b4087abc53a1ddae6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossManager: {fileID: 0}
+  fireWallPrefab: {fileID: 4993748602337178180, guid: 65236b13a060ebe46b868d16f69aa385,
+    type: 3}
+  spawnRadius: 12
+  moveSpeed: 0.3
+  numberOfFireWalls: 16
+  waitTime: 20
 --- !u!1 &358290482771036979
 GameObject:
   m_ObjectHideFlags: 0

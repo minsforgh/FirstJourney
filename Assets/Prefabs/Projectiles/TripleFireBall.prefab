@@ -101,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireBall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 488805699485561197, guid: cd21a4eed2669ab4e9f7500353b5734c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1386860756602718993, guid: cd21a4eed2669ab4e9f7500353b5734c,
         type: 3}
       propertyPath: projectileSpeed
@@ -190,6 +195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireBall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 488805699485561197, guid: cd21a4eed2669ab4e9f7500353b5734c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1386860756602718993, guid: cd21a4eed2669ab4e9f7500353b5734c,
         type: 3}
       propertyPath: projectileSpeed
@@ -278,6 +288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireBall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 488805699485561197, guid: cd21a4eed2669ab4e9f7500353b5734c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 1386860756602718993, guid: cd21a4eed2669ab4e9f7500353b5734c,
         type: 3}

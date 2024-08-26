@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    SpriteRenderer playerSpriteRenderer;
-    SpriteRenderer spriteRenderer;
-    Vector2 orgHandPos;
+    private SpriteRenderer playerSpriteRenderer;
+    private SpriteRenderer spriteRenderer;
+    private Vector2 orgHandPos;
+    
     public bool OrgWeaponFlipX { get; set; }
 
     void Start()

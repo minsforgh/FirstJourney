@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beforeAttackDelay: 1
   contactDamage: 5
-  contactKnockbackForce: 1.5
+  contactKnockbackForce: 0.75
   meleeSettings: {fileID: 0}
   rangedSettings: {fileID: 11400000, guid: 569d39cca83065b4cab28757e82624a5, type: 2}

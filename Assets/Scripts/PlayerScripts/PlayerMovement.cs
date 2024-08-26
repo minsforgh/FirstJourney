@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidBody;
-    private PlayerAnimController animController;
+    private PlayerController playerController;
+    private Rigidbody2D playerRb;
+    private PlayerState playerState;
+    private PlayerAnimController playerAnimController;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float dodgeRange;
@@ -18,18 +20,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkAudioInterval = 0.5f; // 걷기 소리 간격 설정
     private float lastWalkAudioTime; // 마지막으로 걷기 소리 재생된 시간 기록
 
-    void Start()
+    public void Init(PlayerController controller)
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        animController = GetComponent<PlayerAnimController>();
-        lastWalkAudioTime = -walkAudioInterval; // 초기화
+        playerController = controller;
+        playerRb = playerController.GetPlayerRigidbody();
+        playerState = playerController.GetPlayerState();
+        playerAnimController = playerController.GetPlayerAnimController();
+        lastWalkAudioTime = -walkAudioInterval;
     }
 
     void FixedUpdate()
     {
         Move();
         CheckDirection();
-        animController.FlipSprite(rigidBody.velocity);
+        playerAnimController.FlipSprite(playerRb.velocity);
     }
 
     void OnMove(InputValue value)
@@ -39,15 +43,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if (PlayerState.Instance.CanMove && !PlayerState.Instance.IsInteracting)
+        if (playerState.CanMove && !playerState.IsInteracting)
         {
             Vector2 playerVelocity = new Vector2(moveInput.x, moveInput.y) * moveSpeed;
-            rigidBody.velocity = playerVelocity;
+            playerRb.velocity = playerVelocity;
 
-            bool playerHasHorizontalSpeed = Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon;
-            bool playerHasVerticalSpeed = Mathf.Abs(rigidBody.velocity.y) > Mathf.Epsilon;
+            bool playerHasHorizontalSpeed = Mathf.Abs(playerRb.velocity.x) > Mathf.Epsilon;
+            bool playerHasVerticalSpeed = Mathf.Abs(playerRb.velocity.y) > Mathf.Epsilon;
 
-            animController.SetIsMoving(playerHasHorizontalSpeed || playerHasVerticalSpeed);
+            playerAnimController.SetIsMoving(playerHasHorizontalSpeed || playerHasVerticalSpeed);
 
             float currentTime = Time.time;
 
@@ -61,40 +65,40 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckDirection()
     {
-        if (PlayerState.Instance.CanMove)
+        if (playerState.CanMove)
         {
-            animController.SetMovement(rigidBody.velocity);
+            playerAnimController.SetMovement(playerRb.velocity);
 
-            if (animController.GetIsMoving())
+            if (playerAnimController.GetIsMoving())
             {
-                animController.SetLastMovement(rigidBody.velocity);
+                playerAnimController.SetLastMovement(playerRb.velocity);
             }
         }
     }
 
     void OnDodge(InputValue value)
     {
-        if (PlayerState.Instance.CanDodge)
+        if (playerState.CanDodge)
         {
-            PlayerState.Instance.SetCanDodge(false);
+            playerState.SetCanDodge(false);
             StartCoroutine(Dodge());
         }
     }
 
     IEnumerator Dodge()
-    {   
+    {
         Invincible();
-        animController.PlayDodgeEffectCoroutine(invincibleTime);
+        playerAnimController.PlayDodgeEffectCoroutine(invincibleTime);
         AudioManager.Instance.PlayAudio(AudioClipType.PlayerDodge);
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = (mousePosition - transform.position).normalized;
-        animController.FlipSprite(directionToMouse);
-        rigidBody.MovePosition(rigidBody.position + directionToMouse * dodgeRange);
-        rigidBody.velocity = Vector2.zero;
+        playerAnimController.FlipSprite(directionToMouse);
+        playerRb.MovePosition(playerRb.position + directionToMouse * dodgeRange);
+        playerRb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(dodgeCoolTime);
-        PlayerState.Instance.SetCanDodge(true);
+        playerState.SetCanDodge(true);
     }
 
     public void Invincible()
@@ -110,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopPlayer()
     {
-        animController.SetIsMoving(false);
-        rigidBody.velocity = Vector2.zero;
+        playerAnimController.SetIsMoving(false);
+        playerRb.velocity = Vector2.zero;
     }
 }

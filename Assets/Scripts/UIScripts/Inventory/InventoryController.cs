@@ -3,7 +3,10 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
-{
+{   
+    private PlayerController playerController;
+    private PlayerState playerState;
+    
     public GameObject inventoryCanvas;
     private InputAction toggleInventoryAction;
 
@@ -21,14 +24,17 @@ public class InventoryController : MonoBehaviour
 
         // ToggleInventory action에 method 등록(listener)
         toggleInventoryAction.performed += OnToggleInventory;
-    }
+
+        playerController = FindObjectOfType<PlayerController>();
+        playerState = playerController.GetPlayerState();
+    }   
 
     // 부착된 게임 오브젝트가 활성화/ 비활성화 될 때 호출
     // Inventory에 부착했으니, 사실상 게임 시작 시에 Enable 되어서 toggleInventoryAction을 Enable 하는 역할
     private void OnEnable()
     {
         toggleInventoryAction.Enable();
-        ShowUIEvent.AddListener(() => PlayerState.Instance.SetIsInteracting(true));
+        ShowUIEvent.AddListener(() => playerState.SetIsInteracting(true));
     }
 
     private void OnDisable()
@@ -41,7 +47,7 @@ public class InventoryController : MonoBehaviour
     {
         if (isInventoryActive)
         {
-            PlayerState.Instance.SetIsInteracting(false);
+            playerState.SetIsInteracting(false);
             inventoryCanvas.SetActive(false);
         }
         else

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo Instance { get; private set; }
-    [SerializeField] PlayerHealth player;
+
+    private PlayerController playerController;
+    private PlayerHealth playerHealth;
+
     public TextMeshProUGUI currentMoneyText;
 
     Slider hpBar;
@@ -27,20 +29,25 @@ public class PlayerInfo : MonoBehaviour
     }
 
     void Start()
-    {   
-        player = FindAnyObjectByType<PlayerHealth>();
+    {
+        Init();
+        UpdatePlayerHp();
+        UpdateCurrentMoney(0);
+    }
+
+    private void Init()
+    {
+        playerController = FindAnyObjectByType<PlayerController>();
+        playerHealth = playerController.GetPlayerHealth();
+
         hpBar = GetComponentInChildren<Slider>();
         hpText = GetComponentInChildren<TextMeshProUGUI>();
-        hpBar.value = hpBar.maxValue;
-        hpText.text = player.CurrentHealth.ToString() + " / " + player.MaxHealth.ToString();
-
-        UpdateCurrentMoney(0);
     }
 
     public void UpdatePlayerHp()
     {
-        hpBar.value = player.CurrentHealth / player.MaxHealth;
-        hpText.text = player.CurrentHealth.ToString() + " / " + player.MaxHealth.ToString();
+        hpBar.value = playerHealth.CurrentHealth / playerHealth.MaxHealth;
+        hpText.text = playerHealth.CurrentHealth.ToString() + " / " + playerHealth.MaxHealth.ToString();
     }
 
     public void UpdateCurrentMoney(int money)

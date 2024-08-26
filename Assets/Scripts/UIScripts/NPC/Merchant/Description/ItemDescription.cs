@@ -5,60 +5,22 @@ using UnityEngine;
 
 public class ItemDescription : MonoBehaviour
 {
-    public enum ItemType
-    {
-        Weapon,
-        Usable
-    }
+    [SerializeField] private GameObject itemInfoUIPrefab;
 
-    [SerializeField] private GameObject usableItemInfoUI;
-    [SerializeField] private GameObject weaponItemInfoUI;
-    private Dictionary<ItemType, GameObject> uiInstances = new Dictionary<ItemType, GameObject>();
-
-    private ItemType currentItemType;
+    private GameObject infoUIInstance;
 
     public void ShowUI(ItemData item)
     {
-        foreach (var ui in uiInstances.Values)
+        if (infoUIInstance != null)
         {
-            ui.SetActive(false);
-        }
-
-        if (item is WeaponData)
-        {
-            currentItemType = ItemType.Weapon;
-        }
-        else if (item is UsableItemData)
-        {   
-            currentItemType = ItemType.Usable;
-        }
-
-        if (uiInstances.ContainsKey(currentItemType)) 
-        {
-            uiInstances[currentItemType].SetActive(true);
+            infoUIInstance.SetActive(true);
         }
         else
         {
-            GameObject newUI = null;
-
-            switch (currentItemType)
-            {
-                case ItemType.Weapon:
-                    newUI = Instantiate(weaponItemInfoUI, transform);
-                    break;
-                case ItemType.Usable:
-                    newUI = Instantiate(usableItemInfoUI, transform);
-                    break;
-            }
-
-            if (newUI != null)
-            {
-                uiInstances[currentItemType] = newUI;
-                newUI.SetActive(true);
-            }
+            infoUIInstance = Instantiate(itemInfoUIPrefab, transform);
         }
-        ItemInfoBase itemInfoUI = uiInstances[currentItemType].GetComponent<ItemInfoBase>();
-        itemInfoUI.SetInfo(item);
+
+        infoUIInstance.GetComponent<ItemInfoUI>().SetInfo(item);
     }
 
 }
