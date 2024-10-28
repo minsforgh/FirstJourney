@@ -4,16 +4,16 @@ using UnityEngine;
 public class BasicSettings : ScriptableObject
 {
     [Header("Renderer Settings")]
-    private RendererSettings rendererSettings;
+    [SerializeField] private RendererSettings rendererSettings;
 
     [Header("Rigidbody Settings")]
-    private RigidbodySettings rigidbodySettings;
+    [SerializeField] private RigidbodySettings rigidbodySettings;
 
     [Header("Collider Settings")]
-    private ColliderSettings colliderSettings;
+    [SerializeField]private ColliderSettings colliderSettings;
 
     [Header("Animator Settings")]
-    private AnimatorSettings animatorSettings;
+    [SerializeField] private AnimatorSettings animatorSettings;
 
     public RendererSettings RendererSettings => rendererSettings;
     public RigidbodySettings RigidbodySettings => rigidbodySettings;  

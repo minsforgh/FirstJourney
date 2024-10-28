@@ -4933,7 +4933,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  projectileSpeed: 2
+  projectileSpeed: 3
   projectileDamage: 30
   projectileRange: 10
   projectileClip: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}

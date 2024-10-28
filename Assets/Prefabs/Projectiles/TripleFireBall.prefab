@@ -78,7 +78,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  projectileSpeed: 2
+  projectileSpeed: 3
   projectileDamage: 0
   projectileRange: 11
   projectileClip: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BanditChase
   m_EditorClassIdentifier: 
   chaseType: 1
-  chaseSpeed: 1
+  chaseSpeed: 2
   chaseRange: 7
   obstacleLayer:
     serializedVersion: 2
