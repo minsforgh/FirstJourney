@@ -71,10 +71,10 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {   
-        if (collision.gameObject.CompareTag("Player"))
+        if(enemyState.IsAlive && collision.gameObject.CompareTag("Player"))
         {
             HealthInterface health = collision.gameObject.GetComponent<HealthInterface>();
-            if (health != null)
+            if(health != null)
             {
                 health.TakeDamage(contactDamage);
                 KnockbackTarget(collision.gameObject.GetComponent<Rigidbody2D>());

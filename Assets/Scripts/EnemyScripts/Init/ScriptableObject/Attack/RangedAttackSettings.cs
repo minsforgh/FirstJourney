@@ -6,7 +6,7 @@ using UnityEngine;
 public class RangedAttackSettings : ScriptableObject
 {
     public GameObject[] projectilePrefabs;
-    public string[] rangedTriggers;
+    public string[] rangedTriggers; 
     public float[] rangedCooldowns;
     public float rangedEffectiveRange;
 }

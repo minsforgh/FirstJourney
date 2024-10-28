@@ -20,7 +20,8 @@ public class SellingItem : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        itemDescription = FindObjectOfType<ItemDescription>();
+        //itemDescription = FindObjectOfType<ItemDescription>();
+        itemDescription = transform.parent.parent.GetChild(1).GetComponent<ItemDescription>();
     }
 
     public void SetItem(ItemData itemData)

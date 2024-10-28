@@ -9,11 +9,6 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
     private float currentHealth;
     public UnityEvent TakeDamageEvent;
 
-    private void Start()
-    {
-        //PlayerInfo.Instance.UpdatePlayerHp();
-    }
-
     public void Init()
     {
         CurrentHealth = MaxHealth;

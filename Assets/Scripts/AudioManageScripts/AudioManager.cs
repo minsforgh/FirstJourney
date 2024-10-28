@@ -101,6 +101,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayBackgroundMusicByClip(AudioClip audioClip)
+    {
+        if (audioClip != null)
+        {
+            backgroundAudioSource.clip = audioClip;
+            backgroundAudioSource.Play();
+        }
+        else
+        {
+            Debug.Log("No Clip Found");
+        }
+    }
+
     public void SetMainVolume(float volume)
     {
         audioSource.volume = volume / 100f;

@@ -18,7 +18,8 @@ abstract public class MeleeWeaponData : WeaponData
     public float Damage => damage;
     
     protected void KnockbackTarget(Rigidbody2D targetRb, Vector2 from)
-    {
+    {   
+        if(targetRb.constraints == RigidbodyConstraints2D.FreezePosition) return;
         Vector2 knockbackDirection = ((Vector2)targetRb.transform.position - from).normalized;
         Vector2 knockBack = knockbackDirection * knockbackForce;
         targetRb.transform.Translate(knockBack, Space.World);

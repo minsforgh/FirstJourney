@@ -26,7 +26,7 @@ public class EndMenu : MonoBehaviour
     public void OnRestartButton()
     {   
         AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
-        LevelManager.Instance.LoadGameScene();
+        LevelManager.Instance.LoadForestScene();
     }
 
     public void OnToMenuButton()

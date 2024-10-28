@@ -33,7 +33,7 @@ public class EnemyCommonComponents : MonoBehaviour
 
     void InitializeBasicComponents()
     {
-        if (settings != null && settings.basicSettings != null)
+        if (settings != null && settings.BasicSettings != null)
         {
             InitializeRenderer();
             InitializeRigidbody();
@@ -44,46 +44,45 @@ public class EnemyCommonComponents : MonoBehaviour
 
     void InitializeRenderer()
     {
-        if (settings.basicSettings.rendererSettings != null)
+        if (settings.BasicSettings.RendererSettings != null)
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = settings.basicSettings.rendererSettings.sprite;
-            spriteRenderer.flipX = settings.basicSettings.rendererSettings.flipX;
-            spriteRenderer.sortingLayerName = settings.basicSettings.rendererSettings.sortingLayerName;
+            spriteRenderer.sprite = settings.BasicSettings.rendererSettings.sprite;
+            spriteRenderer.flipX = settings.BasicSettings.rendererSettings.flipX;
+            spriteRenderer.sortingLayerName = settings.BasicSettings.rendererSettings.sortingLayerName;
         }
     }
 
     void InitializeRigidbody()
     {
-        if (settings.basicSettings.rigidbodySettings != null)
+        if (settings.BasicSettings.RigidbodySettings != null)
         {
             rb = gameObject.AddComponent<Rigidbody2D>();
-            rb.bodyType = settings.basicSettings.rigidbodySettings.bodyType;
-            rb.useFullKinematicContacts = settings.basicSettings.rigidbodySettings.UseFullKinematiccontacts;
-            rb.freezeRotation = settings.basicSettings.rigidbodySettings.freezeRotation;
-            rb.mass = settings.basicSettings.rigidbodySettings.mass;
-            rb.drag = settings.basicSettings.rigidbodySettings.linearDrag;
-            rb.gravityScale = settings.basicSettings.rigidbodySettings.gravityScale;
-            rb.collisionDetectionMode = settings.basicSettings.rigidbodySettings.collisionDetectionMode;
+            rb.bodyType = settings.BasicSettings.rigidbodySettings.bodyType;
+            rb.freezeRotation = settings.BasicSettings.rigidbodySettings.freezeRotation;
+            rb.mass = settings.BasicSettings.rigidbodySettings.mass;
+            rb.drag = settings.BasicSettings.rigidbodySettings.linearDrag;
+            rb.gravityScale = settings.BasicSettings.rigidbodySettings.gravityScale;
+            rb.collisionDetectionMode = settings.BasicSettings.rigidbodySettings.collisionDetectionMode;
         }   
     }
 
     void InitializeCollider()
     {
-        if (settings.basicSettings.colliderSettings != null)
+        if (settings.BasicSettings.ColliderSettings != null)
         {
-            switch (settings.basicSettings.colliderSettings.colliderType)
+            switch (settings.BasicSettings.colliderSettings.colliderType)
             {
                 case ColliderSettings.ColliderType.Box:
                     var boxCollider = gameObject.AddComponent<BoxCollider2D>();
-                    boxCollider.offset = settings.basicSettings.colliderSettings.offset;
-                    boxCollider.size = settings.basicSettings.colliderSettings.size;
+                    boxCollider.offset = settings.BasicSettings.colliderSettings.offset;
+                    boxCollider.size = settings.BasicSettings.colliderSettings.size;
                     break;
 
                 case ColliderSettings.ColliderType.Capsule:
                     var capsuleCollider = gameObject.AddComponent<CapsuleCollider2D>();
-                    capsuleCollider.offset = settings.basicSettings.colliderSettings.offset;
-                    capsuleCollider.size = settings.basicSettings.colliderSettings.size;
+                    capsuleCollider.offset = settings.BasicSettings.colliderSettings.offset;
+                    capsuleCollider.size = settings.BasicSettings.colliderSettings.size;
                     break;
             }
         }
@@ -91,10 +90,10 @@ public class EnemyCommonComponents : MonoBehaviour
 
     void InitializeAnimator()
     {
-        if (settings.basicSettings.animatorSettings != null)
+        if (settings.BasicSettings.AnimatorSettings != null)
         {
             animator = gameObject.AddComponent<Animator>();
-            animator.runtimeAnimatorController = settings.basicSettings.animatorSettings.controller;
+            animator.runtimeAnimatorController = settings.BasicSettings.animatorSettings.controller;
         }
     }
 
@@ -110,22 +109,22 @@ public class EnemyCommonComponents : MonoBehaviour
 
     void InitializeChase()
     {
-        if (settings != null && settings.chaseSettings != null)
+        if (settings != null && settings.ChaseSettings != null)
         {
-            switch (settings.chaseSettings.chaseType)
+            switch (settings.ChaseSettings.chaseType)
             {
                 case ChaseSettings.ChaseType.Normal:
                     chase = gameObject.AddComponent<EnemyChase>();
-                    chase.chaseSpeed = settings.chaseSettings.chaseSpeed;
-                    chase.chaseRange = settings.chaseSettings.chaseRange;
-                    chase.obstacleLayer = settings.chaseSettings.obstacleLayer;
+                    chase.chaseSpeed = settings.ChaseSettings.chaseSpeed;
+                    chase.chaseRange = settings.ChaseSettings.chaseRange;
+                    chase.obstacleLayer = settings.ChaseSettings.obstacleLayer;
                     break;
 
                 case ChaseSettings.ChaseType.Enhanced:
                     chase = gameObject.AddComponent<EnhancedChase>();
-                    chase.chaseSpeed = settings.chaseSettings.chaseSpeed;
-                    chase.chaseRange = settings.chaseSettings.chaseRange;
-                    chase.obstacleLayer = settings.chaseSettings.obstacleLayer;
+                    chase.chaseSpeed = settings.ChaseSettings.chaseSpeed;
+                    chase.chaseRange = settings.ChaseSettings.chaseRange;
+                    chase.obstacleLayer = settings.ChaseSettings.obstacleLayer;
                     break;
             }
         }
@@ -133,32 +132,32 @@ public class EnemyCommonComponents : MonoBehaviour
 
     void InitializeAttack()
     {
-        if (settings != null && settings.attackSettings != null)
+        if (settings != null && settings.AttackSettings != null)
         {
             var enemyAttackManager = gameObject.AddComponent<EnemyAttackManager>();
-            enemyAttackManager.beforeAttackDelay = settings.attackSettings.beforeAttackDelay;
-            enemyAttackManager.contactDamage = settings.attackSettings.contactDamage;
-            enemyAttackManager.contactKnockbackForce = settings.attackSettings.contactKnockbackForce;
+            enemyAttackManager.beforeAttackDelay = settings.AttackSettings.beforeAttackDelay;
+            enemyAttackManager.contactDamage = settings.AttackSettings.contactDamage;
+            enemyAttackManager.contactKnockbackForce = settings.AttackSettings.contactKnockbackForce;
 
-            if(settings.attackSettings.meleeSettings != null)
+            if(settings.AttackSettings.MeleeSettings != null)
             {
                 var meleeAtk = gameObject.AddComponent<EnemyMeleeAttack>();
-                meleeAtk.cooldowns = settings.attackSettings.meleeSettings.meleeCooldowns;
-                meleeAtk.attackTriggers = settings.attackSettings.meleeSettings.meleeTriggers;
-                meleeAtk.damages = settings.attackSettings.meleeSettings.meleeDamages;
-                meleeAtk.effectiveRange = settings.attackSettings.meleeSettings.meleeEffectiveRange;
-                meleeAtk.attackRadius = settings.attackSettings.meleeSettings.meleeAttackRadius;
-                meleeAtk.knockbackForce = settings.attackSettings.meleeSettings.knockbackForce;
+                meleeAtk.cooldowns = settings.AttackSettings.MeleeSettings.meleeCooldowns;
+                meleeAtk.attackTriggers = settings.AttackSettings.MeleeSettings.meleeTriggers;
+                meleeAtk.damages = settings.AttackSettings.MeleeSettings.meleeDamages;
+                meleeAtk.effectiveRange = settings.AttackSettings.MeleeSettings.meleeEffectiveRange;
+                meleeAtk.attackRadius = settings.AttackSettings.MeleeSettings.meleeAttackRadius;
+                meleeAtk.knockbackForce = settings.AttackSettings.MeleeSettings.knockbackForce;
                 enemyAttackManager.attackTypes.Add(meleeAtk);
             }
 
-            if(settings.attackSettings.rangedSettings != null)
+            if(settings.AttackSettings.RangedSettings != null)
             {
                 var rangedAtk = gameObject.AddComponent<EnemyAttackRanged>();
-                rangedAtk.projectilePrefabs = settings.attackSettings.rangedSettings.projectilePrefabs;
-                rangedAtk.attackTriggers = settings.attackSettings.rangedSettings.rangedTriggers;
-                rangedAtk.cooldowns = settings.attackSettings.rangedSettings.rangedCooldowns;
-                rangedAtk.effectiveRange = settings.attackSettings.rangedSettings.rangedEffectiveRange;
+                rangedAtk.projectilePrefabs = settings.AttackSettings.RangedSettings.projectilePrefabs;
+                rangedAtk.attackTriggers = settings.AttackSettings.RangedSettings.rangedTriggers;
+                rangedAtk.cooldowns = settings.AttackSettings.RangedSettings.rangedCooldowns;
+                rangedAtk.effectiveRange = settings.AttackSettings.RangedSettings.rangedEffectiveRange;
                 enemyAttackManager.attackTypes.Add(rangedAtk);
             }
         }
@@ -166,12 +165,12 @@ public class EnemyCommonComponents : MonoBehaviour
 
 void InitializeHealth()
 {
-    if (settings != null && settings.healthSettings != null)
+    if (settings != null && settings.HealthSettings != null)
     {
         health = gameObject.AddComponent<EnemyHealth>();
-        health.floatingDamage = settings.healthSettings.floatingDamagePrefab;
-        health.MaxHealth = settings.healthSettings.maxHealth;
-        health.CurrentHealth = settings.healthSettings.maxHealth;
+        health.floatingDamage = settings.HealthSettings.floatingDamagePrefab;
+        health.MaxHealth = settings.HealthSettings.maxHealth;
+        health.CurrentHealth = settings.HealthSettings.maxHealth;
 
         health.TakeDamageEvent.AddListener(animController.TriggerHit);
         health.TakeDamageEvent.AddListener(state.EnableHitChase);
@@ -183,24 +182,24 @@ void InitializeHealth()
 
 void InitializeDrop()
 {
-    if (settings != null && settings.dropSettings != null)
+    if (settings != null && settings.DropSettings != null)
     {
         drop = gameObject.AddComponent<EnemyDrop>();
-        drop.dropTable = settings.dropSettings.dropTable;
-        drop.dropItemPrefab = settings.dropSettings.dropItem;
+        drop.dropTable = settings.DropSettings.dropTable;
+        drop.dropItemPrefab = settings.DropSettings.dropItem;
     }
 }
 
 void InitializePatrol()
 {
-    if (settings != null && settings.patrolSettings != null)
+    if (settings != null && settings.PatrolSettings != null)
     {
-        if (settings.patrolSettings.doesPatrol)
+        if (settings.PatrolSettings.doesPatrol)
         {
             patrol = transform.parent.AddComponent<Patrol>();
-            patrol.DoesPatrol = settings.patrolSettings.doesPatrol;
-            patrol.patrolRoutePrefab = settings.patrolSettings.patrolRoute;
-            patrol.patrolSpeed = settings.patrolSettings.patrolSpeed;
+            patrol.DoesPatrol = settings.PatrolSettings.doesPatrol;
+            patrol.patrolRoutePrefab = settings.PatrolSettings.patrolRoute;
+            patrol.patrolSpeed = settings.PatrolSettings.patrolSpeed;
         }
     }
 }

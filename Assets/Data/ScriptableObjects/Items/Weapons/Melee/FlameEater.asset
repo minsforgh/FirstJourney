@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368ca6587e1ecad4d9992d8f655f0130, type: 3}
+  m_Name: FlameEater
+  m_EditorClassIdentifier: 
+  _id: 111
+  _name: FlameEater
+  _sprite: {fileID: 337210922, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
+  _icon: {fileID: 337210922, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
+  _value: 5000
+  _pickedUpClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  _animationController: {fileID: 9100000, guid: 1ceaebbfc3abbe744bb7c9a8834813e5,
+    type: 2}
+  _afterAttackDelay: 0.15
+  _attackCoolTime: 0.5
+  weaponClip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  _spriteFlipX: 1
+  _spriteFlipY: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 36864
+  damage: 15
+  weaponRange: 1
+  knockbackForce: 0.5
+  attackEffectPrefab: {fileID: 4743356069463123597, guid: 86a9d1297775877439334d4d2d795daa,
+    type: 3}
+  attackRange: 0.9

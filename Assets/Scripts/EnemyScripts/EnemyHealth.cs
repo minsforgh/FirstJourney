@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
 
     public UnityEvent TakeDamageEvent = new UnityEvent();
     public UnityEvent DieEvent = new UnityEvent();
-
+    
     private EnemyDrop enemyDrop;
     private EnemyState enemyState;
 
@@ -86,6 +86,6 @@ public class EnemyHealth : MonoBehaviour, HealthInterface
         }
         enemyDrop.DropItems();
         AudioManager.Instance.PlayAudio(AudioClipType.EnemyDead);
-        Destroy(transform.parent.gameObject, 1f);
+        Destroy(transform.parent.gameObject, 0.5f);
     }
 }

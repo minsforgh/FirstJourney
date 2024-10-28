@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1
   projectileSpeed: 2
   projectileDamage: 0
   projectileRange: 11

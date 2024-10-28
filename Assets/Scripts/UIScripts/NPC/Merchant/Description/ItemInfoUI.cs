@@ -13,6 +13,11 @@ public class ItemInfoUI : MonoBehaviour
 
    public void SetInfo(ItemData item)
    {  
+      if(item == null)
+      {
+         Debug.Log("Item is null");
+      }
+      Debug.Log(item.GetType());
       switch(item)
       {
          case WeaponData weapon:
@@ -25,8 +30,9 @@ public class ItemInfoUI : MonoBehaviour
    }
 
    private void SetWeaponInfo(WeaponData weapon)
-   {
-      itemIcon.sprite = weapon.Icon;
+   {  
+      Debug.Log("Set Weapondata");
+      itemIcon.sprite = weapon.Sprite;
       nameText.text = weapon.Name;
       priceText.text = weapon.Value.ToString();
       
@@ -41,8 +47,9 @@ public class ItemInfoUI : MonoBehaviour
    }
 
    private void SetUsableInfo(UsableItemData usable)
-   {
-      itemIcon.sprite = usable.Icon;
+   {  
+      Debug.Log("Set UsableItemData");
+      itemIcon.sprite = usable.Sprite;
       nameText.text = usable.Name;
       priceText.text = usable.Value.ToString();
       
