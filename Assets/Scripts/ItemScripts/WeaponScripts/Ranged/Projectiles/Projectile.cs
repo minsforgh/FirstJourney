@@ -20,7 +20,8 @@ public class Projectile : MonoBehaviour
     protected Vector2 startPos;
 
     protected void KnockbackTarget(Rigidbody2D targetRb)
-    {
+    {   
+        if(targetRb.constraints == RigidbodyConstraints2D.FreezePosition) return;
         Vector2 knockbackDirection = (targetRb.transform.position - transform.position).normalized;
         Vector2 knockBack = knockbackDirection * knockbackForce;
         targetRb.transform.Translate(knockBack, Space.World);

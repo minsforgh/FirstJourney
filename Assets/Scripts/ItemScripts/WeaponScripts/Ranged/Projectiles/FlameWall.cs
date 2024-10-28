@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireWall : MonoBehaviour
+public class FlameWall : MonoBehaviour
 {
     private Vector2 targetPosition;
     private float moveSpeed;
@@ -22,7 +22,7 @@ public class FireWall : MonoBehaviour
         // 일정 거리 이하로 접근하면 파괴하거나 다른 행동
         if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
         {
-            Destroy(gameObject); // 예시로 FireWall이 목표 위치에 도달하면 파괴
+            Destroy(gameObject); // 예시로 FlameWall이 목표 위치에 도달하면 파괴
         }
     }
 

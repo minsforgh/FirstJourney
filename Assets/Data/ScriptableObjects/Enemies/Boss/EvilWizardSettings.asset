@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b7232cdf8d218d489825f2fb08705fd, type: 3}
-  m_Name: EvilWizard
+  m_Script: {fileID: 11500000, guid: 88cd51b4e23d9be4585c9db5034df041, type: 3}
+  m_Name: EvilWizardSettings
   m_EditorClassIdentifier: 
   basicSettings: {fileID: 11400000, guid: 6d077b44454cd314ca09715b36cc1de9, type: 2}
   chaseSettings: {fileID: 11400000, guid: e9f32b4822916e4458cffb65231f33be, type: 2}
@@ -18,3 +18,5 @@ MonoBehaviour:
   healthSettings: {fileID: 11400000, guid: 9442356bacf323d4bb38fdb805e73a79, type: 2}
   dropSettings: {fileID: 11400000, guid: 26f39aac53960434482c6145426df406, type: 2}
   patrolSettings: {fileID: 0}
+  bossSpecialSettings: {fileID: 11400000, guid: bdc9fa1b973de3042840fe6d6ca4fb12,
+    type: 2}

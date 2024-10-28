@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Weapons/Melees/Sword", fileName = "New Sword")]
+[CreateAssetMenu(menuName = "Items/Weapons/Melees/Swords/Normal", fileName = "New Sword")]
 public class SwordData : MeleeWeaponData
 {   
     [Header("Sword Spec")]
-    [SerializeField] float attackRange;
+    [SerializeField] protected float attackRange;
 
     public override void Attack(Vector2 origin, Vector2 target, int directionIndex)
     {   

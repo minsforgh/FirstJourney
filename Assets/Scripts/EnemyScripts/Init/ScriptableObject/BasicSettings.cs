@@ -4,16 +4,21 @@ using UnityEngine;
 public class BasicSettings : ScriptableObject
 {
     [Header("Renderer Settings")]
-    public RendererSettings rendererSettings;
+    private RendererSettings rendererSettings;
 
     [Header("Rigidbody Settings")]
-    public RigidbodySettings rigidbodySettings;
+    private RigidbodySettings rigidbodySettings;
 
     [Header("Collider Settings")]
-    public ColliderSettings colliderSettings;
+    private ColliderSettings colliderSettings;
 
     [Header("Animator Settings")]
-    public AnimatorSettings animatorSettings;
+    private AnimatorSettings animatorSettings;
+
+    public RendererSettings RendererSettings => rendererSettings;
+    public RigidbodySettings RigidbodySettings => rigidbodySettings;  
+    public ColliderSettings ColliderSettings => colliderSettings;
+    public AnimatorSettings AnimatorSettings => animatorSettings;
 }
 
 [System.Serializable]
@@ -28,7 +33,6 @@ public class RendererSettings
 public class RigidbodySettings
 {
     public RigidbodyType2D bodyType = RigidbodyType2D.Dynamic;
-    public bool UseFullKinematiccontacts = true;
     public bool freezeRotation = true;
     public float mass = 10f;
     public float linearDrag = 10f;

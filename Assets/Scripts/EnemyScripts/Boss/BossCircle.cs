@@ -44,6 +44,7 @@ public class BossCircle : MonoBehaviour
 
     private IEnumerator HandleInteraction()
     {   
+        AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
         bossManager.SetStageBlock();
         
         // Play the spawn effect

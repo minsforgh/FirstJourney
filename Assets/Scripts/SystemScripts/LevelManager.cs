@@ -35,9 +35,15 @@ public class LevelManager : MonoBehaviour
         AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
     }
 
-    public void LoadGameScene()
+    public void LoadForestScene()
     {   
-        StartCoroutine(WatiAndLoad("Game", sceneLoadDelay));
+        StartCoroutine(WatiAndLoad("Forest", sceneLoadDelay));
+        AudioManager.Instance.PlayBackgroundMusic(AudioClipType.InGame01);
+    }
+
+    public void LoadCaveScene()
+    {   
+        StartCoroutine(WatiAndLoad("Cave", sceneLoadDelay));
         AudioManager.Instance.PlayBackgroundMusic(AudioClipType.InGame01);
     }
 

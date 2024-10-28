@@ -29,7 +29,7 @@ public class StartMenu : MonoBehaviour
     private void GameStart()
     {
         AudioManager.Instance.PlayAudio(AudioClipType.Confirm);
-        LevelManager.Instance.LoadGameScene();
+        LevelManager.Instance.LoadForestScene();
     }
 
     private void QuitGame()

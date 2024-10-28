@@ -63,7 +63,7 @@ MonoBehaviour:
   fireWallPrefab: {fileID: 4993748602337178180, guid: 65236b13a060ebe46b868d16f69aa385,
     type: 3}
   spawnRadius: 12
-  moveSpeed: 0.3
+  moveSpeed: 0.8
   numberOfFireWalls: 16
   waitTime: 20
 --- !u!1 &358290482771036979

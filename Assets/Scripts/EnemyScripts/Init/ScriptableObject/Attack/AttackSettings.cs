@@ -1,16 +1,20 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "AttackSettings", menuName = "Settings/Attack/AttackSettings")]
 public class AttackSettings : ScriptableObject
 {
+    [Header("General Settings")]
     public float beforeAttackDelay;
     public float contactDamage;
     public float contactKnockbackForce;
 
     [Header("Melee Settings")]
-    public MeleeAttackSettings meleeSettings;
+    [SerializeField] private MeleeAttackSettings meleeSettings;
 
     [Header("Ranged Settings")]
-    public RangedAttackSettings rangedSettings;
+    [SerializeField] private RangedAttackSettings rangedSettings;
+
+    // Public properties for complex data types
+    public MeleeAttackSettings MeleeSettings => meleeSettings;
+    public RangedAttackSettings RangedSettings => rangedSettings;
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class EvilWizardSpecial : BossSpecialAttack
+public class EvilWizardSpecialAttack : BossSpecialAttack
 {
     private bool hasPassedHalfHealth = false;
     private bool hasPassedFivePercentHealth = false;
@@ -26,7 +26,7 @@ public class EvilWizardSpecial : BossSpecialAttack
             StartCoroutine(SpecialAttack());
         }
 
-        if (health.CurrentHealth <= health.MaxHealth / 20 && !hasPassedFivePercentHealth)
+        if (health.CurrentHealth <= health.MaxHealth / 20 && !hasPassedFivePercentHealth)   
         {
             // 체력이 5% 이하가 되는 순간
             hasPassedFivePercentHealth = true;
@@ -40,6 +40,7 @@ public class EvilWizardSpecial : BossSpecialAttack
         enemyState.SetIsSpecialAttack(true);
         enemyState.SetCanAttack(false);
         enemyState.SetIsInvincible(true);
+        FreezePosition();
 
         transform.position = bossManager.transform.position;
 
@@ -52,15 +53,16 @@ public class EvilWizardSpecial : BossSpecialAttack
         enemyState.SetIsInvincible(false);
         enemyState.SetIsSpecialAttack(false);
         enemyState.SetCanAttack(true);
+        UnfreezePosition();
     }
 
-    public IEnumerator MoveFireWall()
+    public IEnumerator MoveFireWall()   
     {
         angleStep = 360f / (float)numberOfFireWalls;  // 각 방벽 사이의 각도
 
         for (int i = 0; i < numberOfFireWalls; i++)
         {
-            SpawnFireWall();
+            SpawnFireWall();    
         }
 
         yield return new WaitForSeconds(waitTime);
@@ -77,7 +79,7 @@ public class EvilWizardSpecial : BossSpecialAttack
         GameObject fireWall = Instantiate(fireWallPrefab, spawnPosition, Quaternion.Euler(0, 0, rotationAngle));
 
         // FireWall을 스테이지 중앙을 향해 이동
-        fireWall.GetComponent<FireWall>().Initialize(bossManager.transform.position, moveSpeed);
+        fireWall.GetComponent<FlameWall>().Initialize(bossManager.transform.position, moveSpeed);
 
         angle += angleStep;
 
@@ -85,5 +87,16 @@ public class EvilWizardSpecial : BossSpecialAttack
         {
             angle -= 360f;
         }
+    }
+
+    private void FreezePosition()
+    {
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+    }
+
+    private void UnfreezePosition()
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 }

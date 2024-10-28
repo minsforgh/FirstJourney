@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    public GameObject boss;
+    [SerializeField] private GameObject bossPrefab;
     public GameObject bossInstance;
 
-    public BossCircle bossCircle; // 보스 소환진 - interactable
-    public GameObject bossInfoUIPrefab;
+    [SerializeField] private BossCircle bossCircle; // 보스 소환진 - interactable
+    [SerializeField] private GameObject bossInfoUIPrefab;
     public BossUI bossUI;
-    public GameObject stageBlockPrefab;
+    [SerializeField] private AudioClip bossBGM;
+
+    [SerializeField] private GameObject stageBlockPrefab;
     public GameObject stageBlockInstance;
-    public Transform stageEntrance;
+    [SerializeField] private Transform stageEntrance;
+
+    [SerializeField] private Portal portal;
 
     [TextArea]
     public string bossName;
 
     private HealthInterface bossHealth;
+
+    public EnemyFactory enemyFactory;
+    public IEnemySettings bossSettings;
 
     void Update()
     {
@@ -25,12 +32,18 @@ public class BossManager : MonoBehaviour
         {
             bossUI.UpdateBossHp(bossHealth.CurrentHealth);
         }
+        if(bossHealth != null && bossHealth.CurrentHealth <= 0 && bossInstance != null)
+        {
+            BossDefeated();
+        }
     }
     
     public IEnumerator SpawnBoss()
     {   
+        AudioManager.Instance.PlayBackgroundMusicByClip(bossBGM);
         yield return new WaitForSeconds(0.5f);
-        bossInstance = Instantiate(boss, bossCircle.transform.position + new Vector3(0, 5, 0), Quaternion.identity);  
+        // bossInstance = Instantiate(bossPrefab, bossCircle.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+        bossInstance = enemyFactory.CreateEnemy(bossSettings, bossCircle.transform);
         bossHealth = bossInstance.GetComponentInChildren<HealthInterface>();
         bossUI = Instantiate(bossInfoUIPrefab).GetComponentInChildren<BossUI>();
         
@@ -39,10 +52,12 @@ public class BossManager : MonoBehaviour
     }
 
      public void BossDefeated()
-    {
+    {   
+        AudioManager.Instance.PlayBackgroundMusic(AudioClipType.InGame01);
         Destroy(bossInstance);
         Destroy(bossUI.gameObject);
         Destroy(stageBlockInstance);
+        EnablePortal();
     }
 
     public void SetBossInfoUI()
@@ -55,6 +70,11 @@ public class BossManager : MonoBehaviour
     public void SetStageBlock()
     {
         stageBlockInstance = Instantiate(stageBlockPrefab, stageEntrance.position, Quaternion.identity);
+    }
+
+    private void EnablePortal()
+    {
+        portal.gameObject.SetActive(true);
     }
 
 
