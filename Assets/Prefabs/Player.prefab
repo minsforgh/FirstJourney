@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6.5
-  dodgeRange: 2.5
-  dodgeCoolTime: 2
-  invincibleTime: 1
+  dodgeRange: 3.5
+  dodgeCoolTime: 3
+  invincibleTime: 1.5
   walkAudioInterval: 0.3
 --- !u!114 &2834272570110135748
 MonoBehaviour:

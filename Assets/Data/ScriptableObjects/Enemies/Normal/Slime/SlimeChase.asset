@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: SlimeChase
   m_EditorClassIdentifier: 
   chaseType: 1
-  chaseSpeed: 0.7
+  chaseSpeed: 1
   chaseRange: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyCommonComponents : MonoBehaviour
@@ -47,9 +46,9 @@ public class EnemyCommonComponents : MonoBehaviour
         if (settings.BasicSettings.RendererSettings != null)
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = settings.BasicSettings.rendererSettings.sprite;
-            spriteRenderer.flipX = settings.BasicSettings.rendererSettings.flipX;
-            spriteRenderer.sortingLayerName = settings.BasicSettings.rendererSettings.sortingLayerName;
+            spriteRenderer.sprite = settings.BasicSettings.RendererSettings.sprite;
+            spriteRenderer.flipX = settings.BasicSettings.RendererSettings.flipX;
+            spriteRenderer.sortingLayerName = settings.BasicSettings.RendererSettings.sortingLayerName;
         }
     }
 
@@ -58,12 +57,12 @@ public class EnemyCommonComponents : MonoBehaviour
         if (settings.BasicSettings.RigidbodySettings != null)
         {
             rb = gameObject.AddComponent<Rigidbody2D>();
-            rb.bodyType = settings.BasicSettings.rigidbodySettings.bodyType;
-            rb.freezeRotation = settings.BasicSettings.rigidbodySettings.freezeRotation;
-            rb.mass = settings.BasicSettings.rigidbodySettings.mass;
-            rb.drag = settings.BasicSettings.rigidbodySettings.linearDrag;
-            rb.gravityScale = settings.BasicSettings.rigidbodySettings.gravityScale;
-            rb.collisionDetectionMode = settings.BasicSettings.rigidbodySettings.collisionDetectionMode;
+            rb.bodyType = settings.BasicSettings.RigidbodySettings.bodyType;
+            rb.freezeRotation = settings.BasicSettings.RigidbodySettings.freezeRotation;
+            rb.mass = settings.BasicSettings.RigidbodySettings.mass;
+            rb.drag = settings.BasicSettings.RigidbodySettings.linearDrag;
+            rb.gravityScale = settings.BasicSettings.RigidbodySettings.gravityScale;
+            rb.collisionDetectionMode = settings.BasicSettings.RigidbodySettings.collisionDetectionMode;
         }   
     }
 
@@ -71,18 +70,18 @@ public class EnemyCommonComponents : MonoBehaviour
     {
         if (settings.BasicSettings.ColliderSettings != null)
         {
-            switch (settings.BasicSettings.colliderSettings.colliderType)
+            switch (settings.BasicSettings.ColliderSettings.colliderType)
             {
                 case ColliderSettings.ColliderType.Box:
                     var boxCollider = gameObject.AddComponent<BoxCollider2D>();
-                    boxCollider.offset = settings.BasicSettings.colliderSettings.offset;
-                    boxCollider.size = settings.BasicSettings.colliderSettings.size;
+                    boxCollider.offset = settings.BasicSettings.ColliderSettings.offset;
+                    boxCollider.size = settings.BasicSettings.ColliderSettings.size;
                     break;
 
                 case ColliderSettings.ColliderType.Capsule:
                     var capsuleCollider = gameObject.AddComponent<CapsuleCollider2D>();
-                    capsuleCollider.offset = settings.BasicSettings.colliderSettings.offset;
-                    capsuleCollider.size = settings.BasicSettings.colliderSettings.size;
+                    capsuleCollider.offset = settings.BasicSettings.ColliderSettings.offset;
+                    capsuleCollider.size = settings.BasicSettings.ColliderSettings.size;
                     break;
             }
         }
@@ -93,7 +92,7 @@ public class EnemyCommonComponents : MonoBehaviour
         if (settings.BasicSettings.AnimatorSettings != null)
         {
             animator = gameObject.AddComponent<Animator>();
-            animator.runtimeAnimatorController = settings.BasicSettings.animatorSettings.controller;
+            animator.runtimeAnimatorController = settings.BasicSettings.AnimatorSettings.controller;
         }
     }
 

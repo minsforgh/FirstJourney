@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoblinChase
   m_EditorClassIdentifier: 
   chaseType: 1
-  chaseSpeed: 1.7
+  chaseSpeed: 3
   chaseRange: 5
   obstacleLayer:
     serializedVersion: 2

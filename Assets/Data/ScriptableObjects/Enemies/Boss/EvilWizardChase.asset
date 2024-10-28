@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EvilWizardChase
   m_EditorClassIdentifier: 
   chaseType: 0
-  chaseSpeed: 2
+  chaseSpeed: 1
   chaseRange: 10
   obstacleLayer:
     serializedVersion: 2

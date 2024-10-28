@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96de9311cf0745e458914e124eebc764, type: 3}
   m_Name: EvilWizardHealth
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 500
   floatingDamagePrefab: {fileID: 4819425487490816618, guid: e215095b3832917469951bc63ccff4df,
     type: 3}
