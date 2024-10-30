@@ -15,11 +15,6 @@ public class LevelManager : MonoBehaviour
         {   
             Instance = this;
             DontDestroyOnLoad(gameObject); 
-            if(AudioManager.Instance == null)
-            {
-                Debug.LogError("IS null");
-            }
-            AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
             
         }
         else
@@ -29,6 +24,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if(AudioManager.Instance == null)
+            {
+                Debug.LogError("Is null");
+            }
+            AudioManager.Instance.PlayBackgroundMusic(AudioClipType.StartMenu);
+    }
+    
     public void LoadStartScene()
     {
         StartCoroutine(WatiAndLoad("Start", sceneLoadDelay));
