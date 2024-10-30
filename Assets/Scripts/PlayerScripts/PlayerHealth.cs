@@ -11,8 +11,12 @@ public class PlayerHealth : MonoBehaviour, HealthInterface
 
     public void Init()
     {
-        CurrentHealth = MaxHealth;
         TakeDamageEvent = new UnityEvent();
+    }
+
+    private void Start()
+    {
+        CurrentHealth = maxHealth;
     }
 
     public float CurrentHealth
