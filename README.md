@@ -1,7 +1,7 @@
 # FirstJourney
 First Original Game to Study Unity2D
 # 2D 탑다운 액션 RPG
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/12ada1a4-22d4-4d88-b1a5-af1565dce4b9/ab315160-c5fe-43b5-8662-4d0ba14f0121/image.png](https://github.com/minsforgh/FirstJourney/blob/main/docs/images/Overview.png)](https://github.com/minsforgh/FirstJourney/blob/main/docs/images/Overview.png)
+![image.png]((https://raw.githubusercontent.com/minsforgh/FirstJourney/main/docs/images/Overview.png))
 ## 소개
 Unity 엔진으로 개발한 2D 탑다운 액션 RPG입니다. 컴포넌트 기반 설계와 ScriptableObject를 활용한 데이터 중심 아키텍처를 통해 확장성과 유지보수성을 높였습니다.
 
