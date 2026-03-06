@@ -70,3 +70,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# 외부 에셋 (Asset Store - 클론 후 별도 다운로드 필요)
+Assets/Using Asset/
+Assets/Free Assets/
+Assets/UnityTechnologies/
